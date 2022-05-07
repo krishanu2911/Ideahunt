@@ -8,3 +8,16 @@
   --font: 'Roboto', sans-serif;
   --font-header: 'Nunito', sans-serif;
 }
+
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-light {
+  background-color: white;
+}
+
+.app-dark {
+  background-color: black;
+}
