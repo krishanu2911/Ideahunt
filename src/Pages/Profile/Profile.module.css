@@ -1,21 +1,7 @@
-.profile_tabs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  text-align: center;
-  background-color: teal;
-  color: white;
-  cursor: pointer;
+.tabs {
+  margin: 0.5rem 2rem;
 }
 
-.idea_tabs {
-  padding:0.5rem;
-  border: 2px solid black;
-}
-
-.tab_style {
-  background-color: var(--primary);
-}
-
-.idea_tabs:hover {
-  background-color: var(--primary);
+.tab {
+  font-weight: bold;
 }
