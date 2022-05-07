@@ -74,19 +74,13 @@ function Ideamodal({idea}) {
                   onClick={() => setUpvoteToggle(prev => !prev)}
                 >
                   <ArrowUpIcon />
-                  <h1>99</h1>
+                  <h1>{upvotes.length}</h1>
                 </Button>
               </div>
             </section>
             <section className="gap-display">
               <Tag size="md" variant="subtle" colorScheme="teal">
                 category
-              </Tag>
-              <Tag size="md" variant="subtle" colorScheme="teal">
-                dummy
-              </Tag>
-              <Tag size="md" variant="subtle" colorScheme="teal">
-                dummy
               </Tag>
             </section>
           </ModalHeader>
