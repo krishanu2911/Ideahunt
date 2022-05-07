@@ -12,9 +12,9 @@ const Hero = () => {
     const heroText = theme==="light" ? style.text_light : style.text_dark;
   return (
     <div>
-        <div class={style.hero_container}>
+        <div className={style.hero_container}>
             <img src={hero1} alt="hero" className={style.hero}/>
-            <div class={style.hero_details}>
+            <div className={style.hero_details}>
                 <div className={`${heroText} ${style.hero_text}`}>
                     Worrying about ideas, don't know where to start or what to choose. Join here, to connect with
                     different people with their ideas and know about their projects.
@@ -22,8 +22,8 @@ const Hero = () => {
                 <Link to="/explore"><Button text='BROWSE IDEAS' contained={true} large={true}/></Link>
             </div>
         </div>
-        <div class={`${style.hero_container} ${style.hero_gutter}`}> 
-            <div class={style.hero_details}>
+        <div className={`${style.hero_container} ${style.hero_gutter}`}> 
+            <div className={style.hero_details}>
                 <div className={`${heroText} ${style.hero_text}`}>
                     Learn about different ideas, connect to authors, collaborate and build awesome projects.
                     Ready to get started?
