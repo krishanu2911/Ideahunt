@@ -12,7 +12,7 @@ export default function Explore() {
           <InputGroup size="lg">
             <InputLeftElement
               pointerEvents="none"
-              children={<SearchIcon color="gray.300" />}
+              children={<SearchIcon color="gray.400" />}
             />
             <Input type="text" placeholder="Search Idea" />
           </InputGroup>

@@ -1,0 +1,65 @@
+.idea-showcase{
+    border: 2px solid lightseagreen;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+}
+.idea-intro{
+    white-space: nowrap;
+    max-width: 55ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cursor{
+    cursor: pointer;
+}
+.idea-modal-footer{
+    width: 100%;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.bold-font{
+    font-weight: 600;
+}
+.spacebtw{
+    display: flex;
+    justify-content: space-between;
+}
+.buttonZindex{
+    z-index: 0;
+}
+.marginLeft{
+    margin-right: 1.5rem;
+}
+.marginLeft-sm{
+    margin-right: 0.5rem;
+}
+.gap-display{
+    display: flex;
+    gap: 0.5rem;
+}
+.comment-list{
+    max-height: 5rem;
+    overflow-y: scroll;
+    width: 100%;
+}
+.date-section{
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    width: fit-content;
+    background-color: lightgray;
+}
+.input-border{
+    border: 2px solid teal;
+}
+@media only screen and (max-width: 700px) {
+    .idea-intro{
+        max-width: 24ch;
+    }
+  }
