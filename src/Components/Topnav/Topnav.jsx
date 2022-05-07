@@ -3,6 +3,7 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
 import { useTheme } from 'Context';
 import './Topnav.css';
+import { Link } from 'react-router-dom';
 
 const Topnav = () => {
     const { themeState, themeDispatch } = useTheme();
@@ -16,8 +17,8 @@ const Topnav = () => {
                 : 
                 <SunIcon w={10} h={10} color="teal" className="icon" onClick={()=>themeDispatch({type: "light"})}/>}
 
-            <Button colorScheme="teal" variant='solid'>Login</Button>
-            <Button colorScheme="teal" variant='outline'>Signup</Button>
+            <Link to="/login" colorScheme="teal" variant='solid'>Login</Link>
+            <Link to="/signup" colorScheme="teal" variant='outline'>Signup</Link>
         </div>
     </div>
   )
