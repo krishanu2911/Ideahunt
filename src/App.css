@@ -15,7 +15,7 @@
 
 .app-dark {
   background-color: black;
-
+}
 /* reset */
 h1{
   margin: 0;
@@ -25,7 +25,7 @@ h1{
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: auto ;
-  grid-template-rows: 3rem auto 5rem;
+  grid-template-rows: 4rem auto 5rem;
   min-height: 100vh;
   grid-template-areas: 
                 "nav-section"
@@ -37,14 +37,25 @@ h1{
   left: 0;
   right: 0;
   grid-area: nav-section;
-  border: 1px solid black;
 }
 .footer-section{
-  border: 1px solid red;
   grid-area: footer-section;
 }
 
 .main-content{
-  border: 1px solid red;
   grid-area: main-section;
+}
+.explore-header{
+  display: flex;
+  gap: 1rem;
+}
+.explore-section{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 1rem;
+}
+.input-section{
+  border-radius: 0.5rem;
+  border: 2px solid black;
 }
