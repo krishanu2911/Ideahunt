@@ -1,6 +1,6 @@
 import './App.css';
 import RouterPath from 'Route/RouterPath';
-import { Topnav } from 'Components';
+import { Footer, Topnav } from 'Components';
 import { useTheme } from 'Context';
 function App() {
   const { themeState } = useTheme();
@@ -15,7 +15,7 @@ function App() {
             <RouterPath />
             </section>
             <footer className='footer-section'>
-                footer
+                <Footer />
             </footer>
         </main>
   );

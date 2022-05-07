@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './HeaderText.module.css';
-import { useTheme } from '../../Context';
+import { useTheme } from 'Context';
 
 const HeaderText = (props) => {
     const { themeState } = useTheme();

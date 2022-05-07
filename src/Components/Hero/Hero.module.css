@@ -1,0 +1,54 @@
+.hero_container {
+    display: flex;
+    align-items: center;
+}
+
+.hero {
+    height: 90vh;
+    max-width: 50vw;
+    display: flex;
+    justify-content: center;
+}
+
+.hero_details {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem;
+    align-items: center;
+    text-align: justify;
+    gap: 1rem;
+}
+
+.hero_text {
+    font-size: 1.3rem;
+    font-family: var(--font);
+}
+
+.text_light {
+    color: black;
+}
+
+.text_dark {
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .hero_container {
+        flex-direction: column;
+    }
+
+    .hero {
+        max-width: 80vw;
+    }
+
+    .hero_text {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .hero_gutter {
+        flex-direction: column-reverse;
+    }
+
+}

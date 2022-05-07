@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/react';
 import { HeaderText, Textbox, Toast } from 'Components';
 import style from './Auth.module.css';
 import { Link } from 'react-router-dom';
-import { useTheme } from '../../Context';
+import { useTheme } from 'Context';
 import { emailRegex, passwordRegex } from '../../Regex/Regex';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
