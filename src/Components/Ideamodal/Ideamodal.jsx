@@ -15,7 +15,8 @@ import {
 } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
-function Ideamodal() {
+function Ideamodal({idea}) {
+  const { title, description, created_at, comments, upvotes } = idea;
   const [upvoteToggle, setUpvoteToggle] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -24,19 +25,8 @@ function Ideamodal() {
         <div className="idea-showcase">
           <section>
             <div onClick={onOpen} className="cursor">
-              <h1 className="bold-font">Idea Title</h1>
-              <p className="idea-intro">
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
-              </p>
+              <h1 className="bold-font">{title}</h1>
+              <p className="idea-intro">{description}</p>
             </div>
             <Button colorScheme="teal" variant="link">
               Author Name
@@ -47,7 +37,7 @@ function Ideamodal() {
               className="buttonZindex"
               colorScheme="teal"
               variant={upvoteToggle ? "solid" : "outline"}
-              onClick={() => setUpvoteToggle((prev) => !prev)}
+              onClick={() => setUpvoteToggle(prev => !prev)}
             >
               <ArrowUpIcon />
               <h1>99</h1>
@@ -69,7 +59,7 @@ function Ideamodal() {
           <ModalHeader>
             <section className="spacebtw marginLeft">
               <div>
-                <h1>Idea Title</h1>
+                <h1>{idea.title}</h1>
                 <Button colorScheme="teal" variant="link">
                   Author Name
                 </Button>
@@ -81,10 +71,10 @@ function Ideamodal() {
                 <Button
                   colorScheme="teal"
                   variant={upvoteToggle ? "solid" : "outline"}
-                  onClick={() => setUpvoteToggle((prev) => !prev)}
+                  onClick={() => setUpvoteToggle(prev => !prev)}
                 >
                   <ArrowUpIcon />
-                  <h1>99</h1>
+                  <h1>{upvotes.length}</h1>
                 </Button>
               </div>
             </section>
@@ -92,32 +82,15 @@ function Ideamodal() {
               <Tag size="md" variant="subtle" colorScheme="teal">
                 category
               </Tag>
-              <Tag size="md" variant="subtle" colorScheme="teal">
-                dummy
-              </Tag>
-              <Tag size="md" variant="subtle" colorScheme="teal">
-                dummy
-              </Tag>
             </section>
           </ModalHeader>
           <ModalCloseButton />
 
           <ModalBody className="flex-col">
-            <h1>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </h1>
+            <h1>{idea.description}</h1>
             <div className="date-section gap-display">
               <h2>Created at</h2>
-              <span>07/05/2022</span>
+              <span> {created_at} </span>
             </div>
           </ModalBody>
           <hr />
@@ -129,12 +102,11 @@ function Ideamodal() {
               </Button>
             </div>
             <div className="comment-list">
-              <h1>dummy comment</h1>
-              <h1>dummy comment</h1>
-              <h1>dummy comment</h1>
-              <h1>dummy comment</h1>
-              <h1>dummy comment</h1>
-              <h1>dummy comment</h1>
+              {
+                comments.map(({id, comment})=>{
+                  return <h1 key={{id}} >{comment}</h1>
+                })
+              }
             </div>
           </ModalFooter>
         </ModalContent>
