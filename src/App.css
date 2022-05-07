@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap');
 :root {
   --primary: rgb(0,127,255);
   --primary-hover: rgb(0,89,178);
@@ -6,4 +6,5 @@
   --bg-light: rgb(255,255,255);
   --grey: rgb(243,246,249);
   --font: 'Roboto', sans-serif;
+  --font-header: 'Nunito', sans-serif;
 }
