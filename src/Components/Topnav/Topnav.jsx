@@ -5,16 +5,20 @@ import { useTheme } from 'Context';
 import './Topnav.css';
 
 const Topnav = () => {
-    const { themeState } = useTheme();
+    const { themeState, themeDispatch } = useTheme();
     const { theme } = themeState;
   return (
-    <div>
-      <h3>Ideahunt</h3>
-      <div>
-          {theme==="light" ? <MoonIcon w={6} h={6} color='blue'/> : <SunIcon w={6} h={6} color="blue"/>}
-      </div>
-    <Button colorScheme="blue" variant='solid'>Login</Button>
-    <Button colorScheme="blue" variant='outline'>Signup</Button>
+    <div className={`topnav ${theme==="light" ? "topnav-light" : "topnav-dark"}`}>
+        <h3 className="header">Ide<span className="header-span">a</span>hunt</h3>
+        <div className="topnav-actions">
+            {theme==="light" ? 
+                <MoonIcon w={10} h={10} color="teal" className="icon" onClick={()=>themeDispatch({type: "dark"})}/> 
+                : 
+                <SunIcon w={10} h={10} color="teal" className="icon" onClick={()=>themeDispatch({type: "light"})}/>}
+
+            <Button colorScheme="teal" variant='solid'>Login</Button>
+            <Button colorScheme="teal" variant='outline'>Signup</Button>
+        </div>
     </div>
   )
 }

@@ -8,6 +8,14 @@
   --font: 'Roboto', sans-serif;
   --font-header: 'Nunito', sans-serif;
 }
+
+.app-light {
+  background-color: white;
+}
+
+.app-dark {
+  background-color: black;
+
 /* reset */
 h1{
   margin: 0;

@@ -1,0 +1,41 @@
+.topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    position: fixed;
+    width: 100%
+}
+
+.topnav-light {
+    background-color: white;
+}
+
+.topnav-dark {
+    background-color: black;
+}
+
+.header {
+    font-family: var(--font-header);
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: teal;
+    cursor: pointer;
+}
+
+.header-span {
+    color: var(--primary-hover);
+}
+
+.topnav-actions {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.icon {
+    border-radius: 1rem;
+    border: 2px solid teal;
+    padding: 0.5rem;
+    cursor: pointer;
+}
