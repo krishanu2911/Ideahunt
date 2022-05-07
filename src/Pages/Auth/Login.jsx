@@ -1,9 +1,11 @@
-import React from 'react'
+import { LoginForm } from 'Components';
+import '../../App.css';
+import React from 'react';
 
 export default function Login() {
     return (
-        <div>
-            Login
-        </div>
+        <main className="auth-forms">
+            <LoginForm />
+        </main>
     )
 }

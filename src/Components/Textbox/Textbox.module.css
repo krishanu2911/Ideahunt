@@ -1,0 +1,29 @@
+.text_fieldset {
+    border: 2px solid teal;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.error_fieldset {
+    border: 2px solid red;
+}
+
+.text_label {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.label_light {
+    color: black;
+}
+
+.label_dark {
+    color: white;
+}
+
+.text_input {
+    width: 100%;
+    background-color: transparent;
+    outline: transparent;
+    padding: 0.4rem
+}

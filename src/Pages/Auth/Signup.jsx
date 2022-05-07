@@ -1,9 +1,11 @@
-import React from 'react'
+import { SignupForm } from 'Components';
+import '../../App.css';
+import React from 'react';
 
 export default function Signup() {
     return (
-        <div>
-            Signup
-        </div>
+        <main className="auth-forms">
+            <SignupForm />
+        </main>
     )
 }
