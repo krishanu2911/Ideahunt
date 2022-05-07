@@ -1,0 +1,15 @@
+.footer {
+    background-color: #141414;
+    height: max-content;
+    display: flex;
+    gap: 0.3rem;
+    font-size: 1.2rem;
+    justify-content: center;
+    padding: 0.5rem;
+    color: white;
+}
+
+.icons {
+    width: 2rem;
+    height: 2rem;
+}

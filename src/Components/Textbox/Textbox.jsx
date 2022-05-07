@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme } from '../../Context';
+import { useTheme } from 'Context';
 import style from './Textbox.module.css';
 
 const Textbox = (props) => {

@@ -10,12 +10,10 @@
 }
 
 .app-light {
-  z-index: -1;
   background-color: white;
 }
 
 .app-dark {
-  z-index: -1;
   background-color: black;
 }
 
@@ -25,10 +23,11 @@ h1{
 }
 /* ##### */
 .App{
+  z-index: -2;
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: auto ;
-  grid-template-rows: 4rem auto 5rem;
+  grid-template-rows: 4rem auto 2.7rem;
   min-height: 100vh;
   grid-template-areas: 
                 "nav-section"
