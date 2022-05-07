@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 :root {
   --primary: rgb(0,127,255);
   --primary-hover: rgb(0,89,178);
   --bg-dark: rgb(0,30,60);
   --bg-light: rgb(255,255,255);
   --grey: rgb(243,246,249);
+  --font: 'Roboto', sans-serif;
 }
