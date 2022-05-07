@@ -10,12 +10,15 @@
 }
 
 .app-light {
+  z-index: -1;
   background-color: white;
 }
 
 .app-dark {
+  z-index: -1;
   background-color: black;
 }
+
 /* reset */
 h1{
   margin: 0;
@@ -58,4 +61,15 @@ h1{
 .input-section{
   border-radius: 0.5rem;
   border: 2px solid black;
+}
+
+.text-span { 
+  color: red;
+}
+
+.auth-forms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
