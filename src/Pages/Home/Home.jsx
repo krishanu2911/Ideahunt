@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
+import "../../App.css";
 function Home() {
     return (
-        <main className='main-section'>
-            Home Page
-        </main>
-            
+        <main>
+            <h1>home page</h1>
+        </main>   
     )
 }
 export default Home;
