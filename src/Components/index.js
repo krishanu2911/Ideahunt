@@ -8,4 +8,5 @@ export { Toast } from './Toast/Toast';
 export { Hero } from './Hero/Hero';
 export { Button } from './Button/Button';
 export { Footer } from './Footer/Footer';
-
+export { ProfileForm } from './ProfileForm/ProfileForm';
+export { IdeaForm } from './IdeaForm/IdeaForm';

@@ -1,0 +1,25 @@
+.profile-page-container {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.profile-div {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1.5px solid teal;
+  margin: 1rem 0;
+  border-radius: 10px;
+}
+.profile-form {
+  padding: 1rem;
+}
+
+.form-label {
+  color: teal;
+}
+.options {
+    color: black;
+}

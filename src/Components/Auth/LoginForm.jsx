@@ -5,10 +5,8 @@ import style from "./Auth.module.css";
 import { Link } from "react-router-dom";
 import { useAuth, useTheme } from "../../Context";
 import { emailRegex, passwordRegex } from "../../Regex/Regex";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { supabase } from "supabaseClient";
 
 const defaultForm = {
   email: "",
@@ -20,7 +18,6 @@ const LoginForm = () => {
   const [form, setForm] = useState(defaultForm);
   const [submitMode, setSubmitMode] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
     email: {
       isError: false,
@@ -55,7 +52,7 @@ const LoginForm = () => {
   const SubmitHandler = async event => {
     event.preventDefault();
     try {
-      const { user, error } = await signIn(form);
+      const { error } = await signIn(form);
       if (error) {
         setError(error.message);
         Toast("Some error occured","error");
