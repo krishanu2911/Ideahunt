@@ -2,6 +2,7 @@ import './App.css';
 import RouterPath from 'Route/RouterPath';
 import { Footer, Topnav } from 'Components';
 import { useTheme } from 'Context';
+
 function App() {
   const { themeState } = useTheme();
   const { theme } = themeState;
