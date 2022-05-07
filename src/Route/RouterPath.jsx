@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Login, Signup, Home, Explore, Profile } from "../Pages/index";
+import "../App.css"
 function RouterPath() {
   return (
     <Routes>
