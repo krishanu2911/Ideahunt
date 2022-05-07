@@ -1,0 +1,14 @@
+.header_text {
+    padding: 1rem 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0 0 3px teal;
+}
+
+.text_light {
+    color: black;
+}
+
+.text_dark {
+    color: white;
+}
