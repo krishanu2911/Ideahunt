@@ -19,6 +19,8 @@ import { Icon } from "@chakra-ui/react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useTheme } from "Context";
+import { Toast } from "Components"
+import { useAuth } from "Context"
 import { supabase } from "supabaseClient";
 
 const ModalDialog = (props) => {
@@ -42,6 +44,7 @@ const ModalDialog = (props) => {
   const { title, description, created_at, user_profile, category } = idea;
   const { category_name } = category;
   const { firstname, lastname } = user_profile; 
+  const { userLogin } = useAuth();
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose} size={"full"} colorScheme="teal">
@@ -66,7 +69,9 @@ const ModalDialog = (props) => {
               <div className="gap-display button-actions">
                 {explore && (
                   <Link to={`/Profile/${idea.user_id}`}>
-                  <Button colorScheme="teal" variant="solid" size="sm">
+                  <Button 
+                  onClick={() => !userLogin && Toast("Login Please", "warning")}
+                  colorScheme="teal" variant="solid" size="sm">
                     Connect
                   </Button>
                   </Link>

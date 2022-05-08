@@ -6,7 +6,7 @@ import "../Ideamodal/Ideamodal.css";
 import { useTheme } from "Context";
 import { supabase } from "supabaseClient";
 import { useAuth } from "Context";
-
+import { Toast } from "../../Components/Toast/Toast"
 import { ModalDialog } from "Components";
 import { Link } from "react-router-dom";
 function Ideamodal({ idea, isProfilePage }) {
@@ -133,7 +133,7 @@ function Ideamodal({ idea, isProfilePage }) {
     setComment("");
   };
 
- const isUpvotedByMe = () => ideaUpvotes?.some(vote => vote.upvotedby_userid === user.id)  
+ const isUpvotedByMe = () => ideaUpvotes?.some(vote => vote.upvotedby_userid === user.id) 
 
   return (
     <div>
@@ -164,6 +164,7 @@ function Ideamodal({ idea, isProfilePage }) {
             onClick={() => {
               setUpvoteToggle((prev) => !prev);
               updateUpvote();
+             !user && Toast("Login Please", "warning")
             }}
           >
            { isUpvotedByMe() ? <ArrowDownIcon/> : <ArrowUpIcon />}

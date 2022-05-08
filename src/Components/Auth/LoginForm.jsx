@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@chakra-ui/react";
-import { HeaderText, Textbox, Toast } from "Components";
+import { HeaderText, Textbox } from "Components";
 import style from "./Auth.module.css";
 import { Link } from "react-router-dom";
 import { useAuth, useTheme } from "../../Context";
 import { emailRegex, passwordRegex } from "../../Regex/Regex";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from "@chakra-ui/icons";
-
+import { Toast } from "../Toast/Toast"
 const defaultForm = {
   email: "",
   password: "",
@@ -53,6 +53,7 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       const { error } = await signIn(form);
+      Toast("Logged In Successfully", "success");
       if (error) {
         setError(error.message);
         Toast("Some error occured", "error");
