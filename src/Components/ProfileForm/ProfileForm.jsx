@@ -12,7 +12,7 @@ const ProfileForm = () => {
   const { themeState } = useTheme();
   const { theme } = themeState;
   return (
-    <div className="profile-page-container" centerContent>
+    <div className="profile-page-container" centercontent>
       <Container maxW="4xl" centerContent>
         <div className="profile-div">
           <Text
@@ -27,11 +27,26 @@ const ProfileForm = () => {
           </Text>
           <div className="profile-form">
             <FormControl isRequired>
-              <FormLabel htmlFor="first-name" color={theme==="light" ? "black" : "white"}>First name</FormLabel>
+              <FormLabel
+                htmlFor="first-name"
+                color={theme === "light" ? "black" : "white"}
+              >
+                First name
+              </FormLabel>
               <Input id="first-name" placeholder="First name" />
-              <FormLabel htmlFor="last-name" color={theme==="light" ? "black" : "white"}>Last name</FormLabel>
+              <FormLabel
+                htmlFor="last-name"
+                color={theme === "light" ? "black" : "white"}
+              >
+                Last name
+              </FormLabel>
               <Input id="last-name" placeholder="Last name" />
-              <FormLabel htmlFor="bio" color={theme==="light" ? "black" : "white"}>Brief Bio</FormLabel>
+              <FormLabel
+                htmlFor="bio"
+                color={theme === "light" ? "black" : "white"}
+              >
+                Brief Bio
+              </FormLabel>
               <Textarea
                 id="bio"
                 placeholder="Please Describe yourself in few Words"
@@ -55,13 +70,33 @@ const ProfileForm = () => {
           </Text>
           <div className="profile-form">
             <FormControl isRequired>
-              <FormLabel htmlFor="email" color={theme==="light" ? "black" : "white"}>Email</FormLabel>
+              <FormLabel
+                htmlFor="email"
+                color={theme === "light" ? "black" : "white"}
+              >
+                Email
+              </FormLabel>
               <Input id="email" placeholder="Enter your Email" type="email" />
-              <FormLabel htmlFor="Github" color={theme==="light" ? "black" : "white"}>Github</FormLabel>
+              <FormLabel
+                htmlFor="Github"
+                color={theme === "light" ? "black" : "white"}
+              >
+                Github
+              </FormLabel>
               <Input id="Github" placeholder="Github Url" />
-              <FormLabel htmlFor="linkedIn" color={theme==="light" ? "black" : "white"}>LinkedIn</FormLabel>
+              <FormLabel
+                htmlFor="linkedIn"
+                color={theme === "light" ? "black" : "white"}
+              >
+                LinkedIn
+              </FormLabel>
               <Input id="linkedIn" placeholder="LinkedIn Url" />
-              <FormLabel htmlFor="twitter" color={theme==="light" ? "black" : "white"}>Twitter</FormLabel>
+              <FormLabel
+                htmlFor="twitter"
+                color={theme === "light" ? "black" : "white"}
+              >
+                Twitter
+              </FormLabel>
               <Input id="twitter" placeholder="Twitter Url" />
               <Button colorScheme="teal" variant="outline" my={2}>
                 Save
@@ -72,6 +107,6 @@ const ProfileForm = () => {
       </Container>
     </div>
   );
-}
+};
 
 export { ProfileForm };

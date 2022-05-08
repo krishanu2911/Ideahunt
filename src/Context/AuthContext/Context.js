@@ -22,11 +22,11 @@ const AuthProvider = ({ children }) => {
   }, [user]);
 
   const signUp = (userData, metaData) =>
-    supabase.auth.signUp(userData,{data:metaData});
+    supabase.auth.signUp(userData, { data: metaData });
 
-    // supabase.auth.signUp(userData, { data: metaData });
+  // supabase.auth.signUp(userData, { data: metaData });
 
-  const signIn = data => supabase.auth.signIn(data);
+  const signIn = (data) => supabase.auth.signIn(data);
 
   const signOut = () => supabase.auth.signOut();
 

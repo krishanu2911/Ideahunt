@@ -32,13 +32,13 @@ const LoginForm = () => {
   const { themeState } = useTheme();
   const { theme } = themeState;
   const textAuth = theme === "light" ? style.text_light : style.text_dark;
-   const { signIn } = useAuth();
+  const { signIn } = useAuth();
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     const validateError = validateForm(name, value);
-    setError(prevValue => ({
+    setError((prevValue) => ({
       ...prevValue,
       [name]: {
         ...prevValue[name],
@@ -48,20 +48,19 @@ const LoginForm = () => {
     setForm({ ...form, [name]: value });
   };
 
-
-  const SubmitHandler = async event => {
+  const SubmitHandler = async (event) => {
     event.preventDefault();
     try {
       const { error } = await signIn(form);
       if (error) {
         setError(error.message);
-        Toast("Some error occured","error");
+        Toast("Some error occured", "error");
       } else {
         navigate("/");
         setForm({ email: "", password: "" });
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   };
 
@@ -70,7 +69,7 @@ const LoginForm = () => {
       case "email":
         return !emailRegex.test(value);
       case "password":
-      return !passwordRegex.test(value);
+        return !passwordRegex.test(value);
       default:
         return false;
     }
@@ -78,7 +77,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     let flag = false;
-    Object.entries(error).forEach(i => {
+    Object.entries(error).forEach((i) => {
       if (i[1].isError) {
         flag = true;
       }
@@ -88,14 +87,14 @@ const LoginForm = () => {
 
   return (
     <div className="centered">
-      <form className={style.auth_card} onSubmit={e => SubmitHandler(e)}>
+      <form className={style.auth_card} onSubmit={(e) => SubmitHandler(e)}>
         <HeaderText text="Login" />
         <Textbox
           label="Email"
           name="email"
           type="email"
           value={form.email}
-          onChange={e => handleChange(e)}
+          onChange={(e) => handleChange(e)}
           error={error.email.isError}
           required
         />
@@ -110,7 +109,7 @@ const LoginForm = () => {
             name="password"
             type={showPassword ? "text" : "password"}
             value={form.password}
-            onChange={e => handleChange(e)}
+            onChange={(e) => handleChange(e)}
             error={error.password.isError}
             required
           />
