@@ -99,3 +99,10 @@ h1{
 .explore_icon:hover {
   background-color: var(--bg-dark);
 }
+
+@media screen and (max-width:520px) {
+  .explore-search{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -115,33 +115,6 @@ export default function Explore() {
               >
                 <BiDownArrowAlt />Least upvotes
               </Button>}
-          
-
-            {/* {sort ? (
-              <Icon
-                as={BiUpArrowAlt}
-                w={9}
-                height={9}
-                color="white"
-                className="explore_icon"
-                onClick={() => {
-                  setSort(false);
-                  sortIdeas(false);
-                }}
-              ></Icon>
-            ) : (
-              <Icon
-                as={BiDownArrowAlt}
-                w={9}
-                height={9}
-                color="white"
-                className="explore_icon"
-                onClick={() => {
-                  setSort(true);
-                  sortIdeas(true);
-                }}
-              ></Icon>
-            )} */}
           </div>
         </div>
       </div>
