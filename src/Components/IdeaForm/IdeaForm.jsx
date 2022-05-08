@@ -49,8 +49,7 @@ const IdeaForm = () => {
 
   const findCategory = category.find(
     (item) => item.category_name === form.category
-  );
-  // console.log(findCategory.id);
+  );  
 
   const postIdea = async () => {  
     try {
@@ -61,8 +60,7 @@ const IdeaForm = () => {
           category_id: findCategory?.id,
           user_id: user.id,
         },
-      ]);
-      console.log("created idea", data);
+      ]);  
       if (error) {
         console.log(error);
       }
