@@ -15,18 +15,24 @@ import {
 } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
+import { useTheme } from 'Context';
+import { Icon } from '@chakra-ui/react';
+import { FaUserCircle } from 'react-icons/fa';
+
 function Ideamodal({idea}) {
   const { title, description, created_at, comments, upvotes } = idea;
   const [upvoteToggle, setUpvoteToggle] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { themeState } = useTheme();
+  const { theme } = themeState;
+  const theme_text = theme==="light" ? "text_light" : "text_dark";
   return (
     <div>
-      <div>
         <div className="idea-showcase">
           <section>
             <div onClick={onOpen} className="cursor">
-              <h1 className="bold-font">{title}</h1>
-              <p className="idea-intro">{description}</p>
+              <h1 className={`bold-font ${theme_text}`} >{title}</h1>
+              <p className={`idea-intro ${theme_text}`}>{description}</p>
             </div>
             <Button colorScheme="teal" variant="link">
               Author Name
@@ -40,14 +46,13 @@ function Ideamodal({idea}) {
               onClick={() => setUpvoteToggle(prev => !prev)}
             >
               <ArrowUpIcon />
-              <h1>99</h1>
+              <h1>{upvotes.length}</h1>
             </Button>
             <Button colorScheme="teal" variant="solid" onClick={onOpen}>
               View
             </Button>
           </div>
         </div>
-      </div>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -85,15 +90,13 @@ function Ideamodal({idea}) {
             </section>
           </ModalHeader>
           <ModalCloseButton />
-
           <ModalBody className="flex-col">
-            <h1>{idea.description}</h1>
+            <h1>{idea.description} </h1>
             <div className="date-section gap-display">
-              <h2>Created at</h2>
-              <span> {created_at} </span>
+              <h2>Posted at</h2>
+              <span>{created_at.split('').slice(0, 10).join('').split('-').reverse().join('-')}</span>
             </div>
           </ModalBody>
-          <hr />
           <ModalFooter className="flex-col">
             <div className="gap-display idea-modal-footer">
               <Input placeholder="comment section" size="sm" className="" />
@@ -103,9 +106,16 @@ function Ideamodal({idea}) {
             </div>
             <div className="comment-list">
               {
-                comments.map(({id, comment})=>{
-                  return <h1 key={{id}} >{comment}</h1>
-                })
+                comments.map(({id, comment})=>
+                  <div className="single-comment">
+                    <div className="profile-details">
+                      <Icon as={FaUserCircle} w={5} h={5}></Icon>
+                      <h3 className="name">Person name</h3>
+                      <small className="date">{'2022-05-07'.split('').slice(0, 10).join('').split('-').reverse().join('-')}</small>
+                    </div>
+                    <h1 key={{id}} className="comment">{comment}</h1>
+                  </div> 
+                )
               }
             </div>
           </ModalFooter>
