@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Login, Signup, Home, Explore, Profile } from "../Pages/index";
+import { Login, Signup, Home, Explore, Profile, ErrorPage } from "../Pages/index";
 import "../App.css"
 function RouterPath() {
   return (
@@ -11,6 +11,7 @@ function RouterPath() {
       <Route path="/explore" element={<Explore />} />
       <Route path="/Profile" element={<Profile />} />
       <Route path="/Profile/:userId" element={<Profile />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 }

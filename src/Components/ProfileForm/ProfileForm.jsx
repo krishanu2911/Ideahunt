@@ -46,7 +46,6 @@ const ProfileForm = () => {
           .select("*")
           .eq("id", userId);
         setInitialUserData(...data);
-        console.log(...data);
       } catch (e) {
         console.log(e);
       }

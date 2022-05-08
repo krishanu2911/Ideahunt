@@ -31,7 +31,7 @@ const ModalDialog = (props) => {
     setUpvoteToggle=null, 
     ideaUpvotes=9,
     updateUpvote=null} = props;
-  const { title, upvotes, description, created_at, user_profile } = idea;
+  const { title, description, created_at, user_profile } = idea;
   const {firstname,lastname} = user_profile;
   return (
     <div>
@@ -86,7 +86,7 @@ const ModalDialog = (props) => {
           <ModalFooter className="flex-col">
             {explore && <div className="gap-display idea-modal-footer">
             <Input
-                placeholder="comment section"
+                placeholder="add a comment"
                 size="sm"
                 className=""
                 name="comment"
