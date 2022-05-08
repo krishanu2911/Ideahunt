@@ -3,8 +3,31 @@ import "../../App.css";
 import { Input, Button , InputGroup , InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Ideamodal } from "../../Components/index";
+import { supabase } from "supabaseClient";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useAuth } from "Context";
 export default function Explore() {
-  const dummyArray = [1, 2, 3, 4];
+  const [ideas, setIdeas] = useState([]);
+
+  const getAllIdeas = async () =>{
+    try{
+      // let { data, error } = await supabase.from("ideas").select("*");
+      let { data, error } = await supabase.from("ideas").select(`*, comments(*), upvotes(*)`);
+      setIdeas(data);
+      console.log(data);
+      if(error)
+      {
+        console.log(error)
+      }
+    }
+    catch(e){
+      console.log("Some error occured",e)
+    }
+  }
+
+  useEffect(()=>{getAllIdeas()},[])
+
   return (
     <div className="explore-section">
       <div className="explore-header">
@@ -18,11 +41,11 @@ export default function Explore() {
           </InputGroup>
         </div>
         <Button colorScheme="teal" size="lg">
-          New Idea!!!
+          New Idea
         </Button>
       </div>
-      {dummyArray.map((idea) => {
-        return <Ideamodal />;
+      {ideas.map((idea) => {
+        return <Ideamodal idea={idea} />;
       })}
     </div>
   );

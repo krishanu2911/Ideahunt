@@ -1,12 +1,34 @@
 import React, { useState } from 'react'
 import "../ProfileForm/ProfileForm.css";
-import { useTheme } from "Context";
+import { useAuth, useTheme } from "Context";
 import { Container, FormControl, FormLabel, Select, Input, Textarea, Text, Button } from "@chakra-ui/react";
+import { supabase } from 'supabaseClient';
 
 const IdeaForm = () => {
   const { themeState } = useTheme();
   const { theme } = themeState;
   const [showForm, setShowForm] = useState(false);
+  const {user} = useAuth();
+
+  const postIdea = async () => {
+    try {
+      const { data, error } = await supabase.from("ideas").insert([
+        {
+          title: "idea 1",
+          description: "idea description",
+          category_id: "1ef6d096-05ab-4e66-bc4e-7022f5342d8b",
+          user_id: user.id,
+        },
+      ]);
+      console.log("created idea", data);
+      if (error) {
+        console.log(error);
+      }
+    } catch (e) {
+      console.log("Some error occured", e);
+    }
+  };
+
   return (
       <div className="profile-page-container">
             <Button variant="outline" colorScheme="teal" onClick={()=>setShowForm(!showForm)}>{showForm ? "Hide form" : "Add idea"}</Button>
