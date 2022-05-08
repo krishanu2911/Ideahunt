@@ -11,6 +11,7 @@ import { supabase } from "supabaseClient";
 import { useAuth } from "../../Context/AuthContext/Context";
 import { useParams } from "react-router-dom";
 import { emailRegex } from "../../Regex/Regex";
+import { Toast } from "Components"
 const ProfileForm = () => {
   const [initialUserData, setInitialUserData] = useState({
     email: "",
@@ -33,6 +34,7 @@ const ProfileForm = () => {
         .eq("id", userId);
       if (error) {
         console.log(error);
+        Toast("Some error occured", "error");
       }
     } catch (e) {
       console.log("Some error occured", e);
@@ -149,10 +151,13 @@ const ProfileForm = () => {
               />
               {user?.id === userId ? (
                 <Button
+                onClick={() => {
+                  userdataUpdate() 
+                  Toast("Saved Detail", "success")
+                }}
                   colorScheme="teal"
                   variant="outline"
                   my={2}
-                  onClick={() => userdataUpdate()}
                 >
                   Save
                 </Button>
@@ -245,7 +250,13 @@ const ProfileForm = () => {
                 placeholder="Twitter Url"
               />
               {user?.id === userId ? (
-                <Button colorScheme="teal" variant="outline" my={2}>
+                <Button 
+                onClick={() => {
+                  error.email.isError && userdataUpdate() 
+                  !error.email.isError && Toast("Saved Detail", "success")
+                  error.email.isError && Toast("Some error occured", "error");
+                }}
+                colorScheme="teal" variant="outline" my={2}>
                   Save
                 </Button>
               ) : null}

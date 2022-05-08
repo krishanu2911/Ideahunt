@@ -15,7 +15,7 @@ import { BiUpArrowAlt, BiDownArrowAlt } from "react-icons/bi";
 import { useAuth, useTheme } from "Context";
 import { Icon } from "@chakra-ui/icon";
 import { Link } from "react-router-dom";
-
+import { Toast } from "../../Components/Toast/Toast"
 const category = [1, 2, 3, 4, 5, 6];
 export default function Explore() {
   const [ideas, setIdeas] = useState([]);
@@ -88,10 +88,9 @@ export default function Explore() {
             />
           </InputGroup>
           <Link to={`${user ? `/Profile/${user ? user?.id : ""}` : "/login"}`}>
-            <Button colorScheme="teal" variant="solid">
+            <Button colorScheme="teal" variant="solid" onClick={() => Toast("hello","success")}>
               Add new idea
             </Button>
-            {/* <Icon as={AiOutlinePlus} w={9} height={9} color="white" className="explore_icon"></Icon> */}
           </Link>
           <div className="explore-actions">
            {sort ? 

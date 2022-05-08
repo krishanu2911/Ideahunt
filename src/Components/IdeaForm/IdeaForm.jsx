@@ -18,6 +18,7 @@ import {
 import { supabase } from "supabaseClient";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import { Ideamodal, ModalDialog } from "Components";
+import { Toast } from "Components";
 const IdeaForm = () => {
   const { themeState } = useTheme();
   const { theme } = themeState;
@@ -100,6 +101,7 @@ const IdeaForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     postIdea();
+    Toast("Saved Idea Detail","success")
     setForm(()=>({
       title: "",
       description: "",
