@@ -13,7 +13,7 @@ import {
   Text,
   Heading,
 } from "@chakra-ui/react";
-import { ArrowUpIcon } from "@chakra-ui/icons";
+import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
 import { Icon } from "@chakra-ui/react";
 import { FaUserCircle } from "react-icons/fa";
@@ -36,13 +36,12 @@ const ModalDialog = (props) => {
     upvoteToggle = null,
     setUpvoteToggle = null,
     ideaUpvotes = 9,
+    isUpvotedByMe,
     updateUpvote = null,
   } = props;
   const { title, description, created_at, user_profile, category } = idea;
-
   const { category_name } = category;
-  const { firstname, lastname } = user_profile;
-
+  const { firstname, lastname } = user_profile; 
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose} size={"full"} colorScheme="teal">
@@ -79,7 +78,9 @@ const ModalDialog = (props) => {
                     updateUpvote();
                   }}
                 >
-                  <ArrowUpIcon />
+
+                  {isUpvotedByMe() ? <ArrowDownIcon /> : <ArrowUpIcon />}
+
                   <h1>{ideaUpvotes.length}</h1>
                 </Button>
               </div>
@@ -184,5 +185,4 @@ const ModalDialog = (props) => {
     </div>
   );
 };
-
 export { ModalDialog };
