@@ -93,8 +93,9 @@ const ProfileForm = () => {
             p={2}
             borderRadius="0.3rem"
           >
-            
-           { user?.id === userId ? "My Profile" : `${initialUserData.firstname}'s Profile`}
+            {user?.id === userId
+              ? "My Profile"
+              : `${initialUserData.firstname}'s Profile`}
           </Text>
           <div className="profile-form">
             <FormControl isRequired>
@@ -167,16 +168,7 @@ const ProfileForm = () => {
           >
             Social Links
           </Text>
-          {/* 
-          bio: null
-email: "biradaraishwarya9@gmail.com"
-firstname: "Aishwarya"
-github_url: null
-id: "a0574e87-785c-495d-8c9d-d8b7384c5cae"
-lastname: "Biradar"
-linkedin_url: null
-twitter_url: null
-          */}
+
           <div className="profile-form">
             <FormControl isRequired>
               <FormLabel

@@ -10,7 +10,6 @@ function RouterPath() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/explore" element={<Explore />} />
-      <Route path="/Profile" element={<RequireAuth><Profile /></RequireAuth>} />
       <Route path="/Profile/:userId" element={<RequireAuth><Profile /></RequireAuth>} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
