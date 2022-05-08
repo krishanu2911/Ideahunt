@@ -39,7 +39,7 @@ export default function Explore() {
               pointerEvents="none"
               children={<SearchIcon color="gray.400" />}
             />
-            <Input type="text" placeholder="Search Idea" />
+            <Input type="text" placeholder="Search idea" />
           </InputGroup>
         </div>
         <Button colorScheme="teal" size="lg">

@@ -6,8 +6,9 @@ import "../Ideamodal/Ideamodal.css";
 import { useTheme } from "Context";
 import { supabase } from "supabaseClient";
 import { useAuth } from "Context";
-import { ModalDialog } from "Components";
 
+import { ModalDialog } from "Components";
+import { Link } from "react-router-dom";
 function Ideamodal({ idea }) {
   const { id, title, description, user_profile } = idea;
   const { firstname, lastname } = user_profile;
@@ -110,7 +111,9 @@ function Ideamodal({ idea }) {
     setComment("");
   };
 
+
   const isUpvotedByMe = () => ideaUpvotes?.find((vote) => vote.idea_id === id);
+
 
   return (
     <div>
@@ -121,7 +124,9 @@ function Ideamodal({ idea }) {
             <p className={`idea-intro ${theme_text}`}>{description}</p>
           </div>
 
-          {isUserSame ? (
+          <Link to={`/Profile/${idea.user_profile.id}`}>
+            <Button colorScheme="teal" variant="link">
+              {isUserSame ? (
             "My idea"
           ) : (
             <>
@@ -130,6 +135,9 @@ function Ideamodal({ idea }) {
               </Button>
             </>
           )}
+            </Button>
+          </Link>
+
         </section>
         <div className="flex-col">
           <Button
