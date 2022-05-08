@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
-import { Input, Button, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Input, Button, InputGroup, InputLeftElement, Select } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import { Ideamodal } from "../../Components/index";
 import { supabase } from "supabaseClient";
-import { useState } from "react";
-import { useEffect } from "react";
+import { AiOutlinePlus } from 'react-icons/ai';
+import { BiUpArrowAlt, BiDownArrowAlt } from 'react-icons/bi';
+import { useAuth, useTheme } from "Context";
+import { Icon } from "@chakra-ui/icon";
 import { Link } from "react-router-dom";
 import { useAuth } from "Context";
+
+const category = [1, 2, 3, 4,5 ,6]
 export default function Explore() {
   const [ideas, setIdeas] = useState([]);
+   const [sort, setSort] = useState(false);
+  const { themeState } = useTheme();
+  const { theme } = themeState;
   const { user } = useAuth();
+
   const getAllIdeas = async () => {
     try {
       let { data, error } = await supabase
@@ -34,7 +42,7 @@ export default function Explore() {
   return (
     <div className="explore-section">
       <div className="explore-header">
-        <div>
+        <div className="explore-search">
           <InputGroup size="lg">
             <InputLeftElement
               pointerEvents="none"
@@ -42,12 +50,34 @@ export default function Explore() {
             />
             <Input type="text" placeholder="Search idea" />
           </InputGroup>
-        </div>
-        <Link to={`/Profile/${user ? user?.id : ""}`}>
-        <Button colorScheme="teal" size="lg">
-          New Idea
-        </Button>
-        </Link>
+          <Link to={`/Profile/${user ? user?.id : ""}`}>
+            <Button colorScheme="teal" variant="solid">Add your idea</Button>
+            {/* <Icon as={AiOutlinePlus} w={9} height={9} color="white" className="explore_icon"></Icon> */}
+          </Link>
+        </div>  
+        <div className="explore-actions">
+        <Select
+            variant="outline"
+            color={theme === "light" ? "#000" : "#fff"}
+            placeholder="Category"
+            name="category"
+            value=""
+            className="explore_select">
+            {category.map(cat => (
+              <option
+                key={cat}
+                value=""
+                className="options">
+                Options
+              </option>
+            ))}
+        </Select>
+        {sort ? 
+          <Icon as={BiUpArrowAlt} w={9} height={9} color="white" className="explore_icon" onClick={()=>setSort(false)}></Icon>
+          :
+          <Icon as={BiDownArrowAlt} w={9} height={9}  color="white" className="explore_icon" onClick={()=>setSort(true)}></Icon>}
+          <Button variant="outline" colorScheme="teal">Reset</Button>
+        </div> 
       </div>
       <div className="idea_models">
         {ideas.map((idea) => {
@@ -57,3 +87,6 @@ export default function Explore() {
     </div>
   );
 }
+
+        
+     
