@@ -95,7 +95,8 @@ const ProfileForm = () => {
             p={2}
             borderRadius="0.3rem"
           >
-            Profile
+            
+           { user?.id === userId ? "My Profile" : `${initialUserData.firstname}'s Profile`}
           </Text>
           <div className="profile-form">
             <FormControl isRequired>
