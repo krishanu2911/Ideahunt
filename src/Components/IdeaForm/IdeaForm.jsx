@@ -198,7 +198,7 @@ const IdeaForm = () => {
 
       <div className="idea-listing">
         <Heading as="h3" size="lg" color={theme === "light" ? "#000" : "#fff"}>
-          {user.id === userId ? (
+          {user?.id === userId ? (
             "My ideas"
           ) : (
             <>{userIdeas[0]?.user_profile?.firstname + "'s ideas"}</>
