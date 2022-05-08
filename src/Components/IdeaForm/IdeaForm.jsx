@@ -27,6 +27,7 @@ const IdeaForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { user } = useAuth();
   const { userId } = useParams();
+  const [ideaAdded, setIdeaAdded] = useState(false);
 
   const [userIdeas, setUserIdeas] = useState([]);
   const getAllUserIdeas = async () => {
@@ -57,6 +58,7 @@ const IdeaForm = () => {
     const name = e.target.name;
     const value = e.target.value;
     setForm({ ...form, [name]: value });
+    setIdeaAdded(false)
   };
 
   const getCategory = async () => {
@@ -75,7 +77,7 @@ const IdeaForm = () => {
   }, []);
   useEffect(() => {
     getAllUserIdeas();
-  }, [form]);
+  }, [ideaAdded]);
 
   const findCategory = category.find(
     (item) => item.category_name === form.category
@@ -94,6 +96,7 @@ const IdeaForm = () => {
       if (error) {
         console.log(error);
       }
+      setIdeaAdded(true)
     } catch (e) {
       console.log("Some error occured", e);
     }

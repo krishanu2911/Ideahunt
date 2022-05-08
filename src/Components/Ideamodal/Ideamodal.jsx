@@ -133,7 +133,7 @@ function Ideamodal({ idea, isProfilePage }) {
     setComment("");
   };
 
- const isUpvotedByMe = () => ideaUpvotes?.some(vote => vote.upvotedby_userid === user.id) 
+ const isUpvotedByMe = () => ideaUpvotes?.some(vote => vote.upvotedby_userid === user?.id) 
 
   return (
     <div>
@@ -160,14 +160,14 @@ function Ideamodal({ idea, isProfilePage }) {
           <Button
             className="buttonZindex"
             colorScheme="teal"
-            variant={ "outline" }
+            variant={"outline"}
             onClick={() => {
-              setUpvoteToggle((prev) => !prev);
+              setUpvoteToggle(prev => !prev);
               updateUpvote();
-             !user && Toast("Login Please", "warning")
+              !user && Toast("Login Please", "warning");
             }}
           >
-           { isUpvotedByMe() ? <ArrowDownIcon/> : <ArrowUpIcon />}
+            {isUpvotedByMe() ? <ArrowDownIcon /> : <ArrowUpIcon />}
             <h1>{ideaUpvotes.length}</h1>
           </Button>
           <Button colorScheme="teal" variant="solid" onClick={onOpen}>
@@ -188,7 +188,7 @@ function Ideamodal({ idea, isProfilePage }) {
         setUpvoteToggle={setUpvoteToggle}
         ideaUpvotes={ideaUpvotes}
         updateUpvote={updateUpvote}
-        isUpvotedByMe = {isUpvotedByMe}
+        isUpvotedByMe={isUpvotedByMe}
       />
     </div>
   );

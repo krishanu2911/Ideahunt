@@ -17,7 +17,7 @@ import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
 import { Icon } from "@chakra-ui/react";
 import { FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useTheme } from "Context";
 import { Toast } from "Components"
 import { useAuth } from "Context"
@@ -45,6 +45,7 @@ const ModalDialog = (props) => {
   const { category_name } = category;
   const { firstname, lastname } = user_profile; 
   const { userLogin } = useAuth();
+  const {userId} = useParams()
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose} size={"full"} colorScheme="teal">
@@ -67,13 +68,18 @@ const ModalDialog = (props) => {
                 </Link>
               </div>
               <div className="gap-display button-actions">
-                {explore && (
+                { !userId && (
                   <Link to={`/Profile/${idea.user_id}`}>
-                  <Button 
-                  onClick={() => !userLogin && Toast("Login Please", "warning")}
-                  colorScheme="teal" variant="solid" size="sm">
-                    Connect
-                  </Button>
+                    <Button
+                      onClick={() =>
+                        !userLogin && Toast("Login Please", "warning")
+                      }
+                      colorScheme="teal"
+                      variant="solid"
+                      size="sm"
+                    >
+                      Connect
+                    </Button>
                   </Link>
                 )}
                 <Button
@@ -81,13 +87,11 @@ const ModalDialog = (props) => {
                   colorScheme="teal"
                   variant={upvoteToggle ? "solid" : "outline"}
                   onClick={() => {
-                    setUpvoteToggle((prev) => !prev);
+                    setUpvoteToggle(prev => !prev);
                     updateUpvote();
                   }}
                 >
-
                   {isUpvotedByMe() ? <ArrowDownIcon /> : <ArrowUpIcon />}
-
                   <h1>{ideaUpvotes.length}</h1>
                 </Button>
               </div>
@@ -133,7 +137,7 @@ const ModalDialog = (props) => {
                 className=""
                 name="comment"
                 value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                onChange={e => setComment(e.target.value)}
               />
               <Button
                 colorScheme="teal"
