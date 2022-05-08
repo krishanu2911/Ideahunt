@@ -55,7 +55,8 @@ h1{
   gap: 1rem;
 }
 
-.explore-search {
+.explore-search, .explore-actions {
+  align-items: center;
   display: flex;
   gap: 1rem
 }
@@ -93,15 +94,6 @@ h1{
   background-color: teal;
   border-radius: 50%;
   cursor: pointer;
-}
-
-.explore-actions {
-  display: flex;
-  gap: 1rem
-}
-
-.explore_select {
- 
 }
 
 .explore_icon:hover {
