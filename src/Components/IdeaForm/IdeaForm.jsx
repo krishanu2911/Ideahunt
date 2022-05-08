@@ -108,13 +108,15 @@ const IdeaForm = () => {
 
   return (
     <div className="profile-page-container">
-      <Button
-        variant="outline"
-        colorScheme="teal"
-        onClick={() => setShowForm(!showForm)}
-      >
-        {showForm ? "Hide form" : "Add idea"}
-      </Button>
+      {user?.id === userId ? (
+                <Button
+                variant="outline"
+                colorScheme="teal"
+                onClick={() => setShowForm(!showForm)}
+              >
+                {showForm ? "Hide form" : "Add idea"}
+              </Button>
+              ) : null}
       {showForm && (
         <Container maxW="4xl" centerContent>
           <div className="profile-div">
