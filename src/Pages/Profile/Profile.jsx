@@ -11,18 +11,18 @@ export default function Profile() {
       <Tabs className={style.tabs}>
         <TabList>
           <Tab color="teal" className={style.tab} fontSize="xl">
-            Profile
+            Ideas
           </Tab>
           <Tab color="teal" className={style.tab} fontSize="xl">
-            Ideas
+            Profile
           </Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
-            <ProfileForm />
+            <IdeaForm />
           </TabPanel>
           <TabPanel>
-            <IdeaForm />
+            <ProfileForm />
           </TabPanel>
         </TabPanels>
       </Tabs>

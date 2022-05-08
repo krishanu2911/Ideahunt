@@ -102,11 +102,11 @@ const IdeaForm = () => {
     e.preventDefault();
     postIdea();
     Toast("Saved Idea Detail","success")
-    setForm({
+    setForm(()=>({
       title: "",
       description: "",
       category: "",
-    });
+    }));
   };
 
   return (
