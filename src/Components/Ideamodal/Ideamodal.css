@@ -5,11 +5,10 @@
     padding: 1rem;
     display: flex;
     flex-wrap: wrap;
-    border-radius: 0.5rem;
 }
 .idea-intro{
     white-space: nowrap;
-    max-width: 55ch;
+    width: 55ch;
     overflow: hidden;
     text-overflow: ellipsis;
 }

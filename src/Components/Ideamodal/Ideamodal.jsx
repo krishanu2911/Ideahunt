@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
+import { Link } from "react-router-dom";
 function Ideamodal({idea}) {
   const { title, description, created_at, comments, upvotes } = idea;
   const [upvoteToggle, setUpvoteToggle] = useState(false);
@@ -28,9 +29,11 @@ function Ideamodal({idea}) {
               <h1 className="bold-font">{title}</h1>
               <p className="idea-intro">{description}</p>
             </div>
+            <Link to={`/Profile/${idea.user_id}`}>
             <Button colorScheme="teal" variant="link">
               Author Name
             </Button>
+            </Link>
           </section>
           <div className="flex-col">
             <Button
@@ -60,9 +63,11 @@ function Ideamodal({idea}) {
             <section className="spacebtw marginLeft">
               <div>
                 <h1>{idea.title}</h1>
-                <Button colorScheme="teal" variant="link">
+                <Link to={`/Profile/${idea.user_id}`}>
+                 <Button colorScheme="teal" variant="link">
                   Author Name
-                </Button>
+                </Button> 
+                </Link>
               </div>
               <div className="gap-display">
                 <Button colorScheme="teal" variant="solid">
