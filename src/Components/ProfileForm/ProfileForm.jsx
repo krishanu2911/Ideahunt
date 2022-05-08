@@ -84,7 +84,7 @@ const ProfileForm = () => {
   };
   console.log(initialUserData);
   return (
-    <div className="profile-page-container" centerContent>
+    <div className="profile-page-container" centercontent>
       <Container maxW="4xl" centerContent>
         <div className="profile-div">
           <Text

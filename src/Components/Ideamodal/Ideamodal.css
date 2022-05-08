@@ -1,10 +1,10 @@
 .idea-showcase{
     border: 2px solid lightseagreen;
-    gap: 0.5rem;
+    gap: 1rem;
     border-radius: 0.5rem;
     padding: 1rem;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between; 
 }
 .idea-intro{
     white-space: nowrap;
@@ -14,6 +14,7 @@
 }
 .cursor{
     cursor: pointer;
+    flex-wrap: wrap;
 }
 .idea-modal-footer{
     width: 100%;
@@ -42,21 +43,70 @@
 .gap-display{
     display: flex;
     gap: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: -0.5rem;
 }
 .comment-list{
-    max-height: 5rem;
+    max-height: 8rem;
+    margin-top: 0.5rem;
     overflow-y: scroll;
     width: 100%;
 }
 .date-section{
     border-radius: 0.5rem;
-    padding: 0.2rem;
+    padding: 0.2rem 0.5rem;
     width: fit-content;
     background-color: lightgray;
 }
 .input-border{
     border: 2px solid teal;
 }
+
+.profile-details {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-end;
+}
+
+.profile-details .name {
+    font-weight: bold;
+    margin-bottom: -0.1rem;
+}
+
+.profile-details .date {
+    font-size: 0.7rem;
+}
+
+.single-comment .comment {
+    padding: 0.3rem 1.7rem
+}
+
+.modal-creation {
+    padding: 0 0.5rem
+}
+
+.comment-list::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.comment-list::-webkit-scrollbar-track {
+    background-color: rgb(192, 183, 183);
+    border-radius: 3rem;
+}
+
+.comment-list::-webkit-scrollbar-thumb {
+    background-color: hsl(288, 6%, 33%);
+    border-radius: 3rem;
+}
+
+.text_light {
+    color: black;
+}
+
+.text_dark {
+    color: white;
+}
+
 @media only screen and (max-width: 700px) {
     .idea-intro{
         max-width: 24ch;

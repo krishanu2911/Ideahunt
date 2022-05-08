@@ -34,6 +34,21 @@
     display: flex;
     gap: 0.8rem;
     align-items: center;
+    position: relative;
+}
+
+.topnav-links {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    top: 3rem;
+    right: 0;
+    gap: 0.5rem;
+    color: white;
+    background-color: teal;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
 }
 
 .icon {

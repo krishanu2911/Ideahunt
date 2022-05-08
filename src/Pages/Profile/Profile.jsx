@@ -1,10 +1,9 @@
 import { ProfileForm, IdeaForm } from "Components";
-import React, { useState } from "react";
+import React from "react";
 import style from "./Profile.module.css";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 export default function Profile() {
-  const [profile, setProfile] = useState("Profile");
   return (
     <div>
       <Tabs className={style.tabs}>

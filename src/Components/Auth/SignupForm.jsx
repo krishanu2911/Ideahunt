@@ -5,10 +5,8 @@ import style from "./Auth.module.css";
 import { Link } from "react-router-dom";
 import { useAuth, useTheme } from "../../Context";
 import { emailRegex, passwordRegex } from "../../Regex/Regex";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { supabase } from "supabaseClient";
 
 const defaultForm = {
   firstName: "",
@@ -21,7 +19,6 @@ const SignupForm = () => {
   let navigate = useNavigate();
   const [form, setForm] = useState(defaultForm);
   const [submitMode, setSubmitMode] = useState(false);
-  const [checkPassword, setCheckPassword] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState({
     email: {
@@ -42,9 +39,6 @@ const SignupForm = () => {
   const handleChange = e => {
     const name = e.target.name;
     const value = e.target.value;
-    if (name === "password") {
-      setCheckPassword(value);
-    }
     const validateError = validateForm(name, value);
     setError(prevValue => ({
       ...prevValue,
@@ -75,7 +69,8 @@ const SignupForm = () => {
       setError(error.message);
     } else 
     {
-      navigate("/");
+      setForm(defaultForm);
+      navigate("/login");
     }
   };
 
@@ -176,7 +171,7 @@ const SignupForm = () => {
           variant="solid"
           width="17rem"
           colorScheme="teal"
-          // disabled={submitMode}
+          disabled={submitMode}
           error={submitMode}
           type="submit"
         >
