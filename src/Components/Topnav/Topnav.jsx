@@ -15,11 +15,12 @@ const Topnav = () => {
     const login = false;
     const navigate = useNavigate()
     const {logoutHandler, userLogin , user} = useAuth();
-    const navigate = useNavigate();
     const [showDropdown, setShowDropdown] = useState();
   return (
     <div className={`topnav ${theme==="light" ? "topnav-light" : "topnav-dark"}`}>
+      <Link to={"/"}>
         <h3 className="header">Ide<span className="header-span">a</span>hunt</h3>
+      </Link>
         <div className="topnav-actions">
             {theme==="light" ? 
                 <MoonIcon w={10} h={10} color="teal" className="icon" onClick={()=>themeDispatch({type: "dark"})}/> 
