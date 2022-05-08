@@ -134,27 +134,11 @@ function Ideamodal({ idea }) {
             </div>
             <Link to={`/Profile/${idea.user_id}`}>
             <Button colorScheme="teal" variant="link">
-              Author Name
+            {firstname + " " + lastname}
             </Button>
             </Link>
           </section>
-          <div className="flex-col">
-            <Button
-              className="buttonZindex"
-              colorScheme="teal"
-              variant={upvoteToggle ? "solid" : "outline"}
-              onClick={() => setUpvoteToggle(prev => !prev)}
-            >
-              <ArrowUpIcon />
-              <h1>99</h1>
-            </Button>
-            <Button colorScheme="teal" variant="solid" onClick={onOpen}>
-              View
-            </Button>
-          </div>
-          <Button colorScheme="teal" variant="link">
-            {firstname + " " + lastname}
-          </Button>
+          <section>
         </section>
         <div className="flex-col">
           <Button
@@ -187,14 +171,10 @@ function Ideamodal({ idea }) {
               <div>
                 <h1>{idea.title}</h1>
                 <Link to={`/Profile/${idea.user_id}`}>
-                 <Button colorScheme="teal" variant="link">
-                  Author Name
-                </Button> 
-                </Link>
-
                 <Button colorScheme="teal" variant="link">
                   {firstname + " " + lastname}
                 </Button>
+                </Link>
               </div>
               <div className="gap-display">
                 <Button colorScheme="teal" variant="solid">
@@ -281,6 +261,7 @@ function Ideamodal({ idea }) {
           </ModalFooter>
         </ModalContent>
       </Modal>
+    </div>
     </div>
   );
 }
