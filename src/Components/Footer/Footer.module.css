@@ -1,11 +1,19 @@
 .footer {
-    background-color: #141414;
     height: max-content;
     display: flex;
     gap: 0.3rem;
     font-size: 1.2rem;
     justify-content: center;
     padding: 0.5rem;
+}
+
+.footer_light {
+    background-color: #EBEBEB;
+    color: black;
+}
+
+.footer_dark {
+    background-color: #141414;
     color: white;
 }
 
