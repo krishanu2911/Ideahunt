@@ -17,12 +17,25 @@ import { Icon } from '@chakra-ui/react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-const ModalDialog = ({explore, idea, isOpen, onClose, upvoteToggle=null, setUpvoteToggle=null}) => {
-  const { title, upvotes, description, created_at, comments, user_profile } = idea;
+const ModalDialog = (props) => {
+  const {
+    explore, 
+    idea, 
+    isOpen, 
+    onClose, 
+    ideaComments=[], 
+    submitComment=null, 
+    comment=null, 
+    setComment=null, 
+    upvoteToggle=null, 
+    setUpvoteToggle=null, 
+    ideaUpvotes=9,
+    updateUpvote=null} = props;
+  const { title, upvotes, description, created_at, user_profile } = idea;
   const {firstname,lastname} = user_profile;
   return (
     <div>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} size={'full'}>
         <ModalOverlay />
         <ModalContent
           style={{
@@ -38,9 +51,6 @@ const ModalDialog = ({explore, idea, isOpen, onClose, upvoteToggle=null, setUpvo
                   {firstname + " " + lastname}
                 </Button>
                 </Link>
-                <Button colorScheme="teal" variant="link">
-                  Author Name
-                </Button>
               </div>
               <div className="gap-display">
                 {explore && <Button colorScheme="teal" variant="solid">
@@ -49,10 +59,13 @@ const ModalDialog = ({explore, idea, isOpen, onClose, upvoteToggle=null, setUpvo
                 <Button
                   colorScheme="teal"
                   variant={upvoteToggle ? "solid" : "outline"}
-                  onClick={() => setUpvoteToggle(prev => !prev)}
+                  onClick={() => {
+                    setUpvoteToggle(prev => !prev);
+                    updateUpvote();
+                  }}
                 >
                   <ArrowUpIcon />
-                  <h1>{upvotes?.length}</h1>
+                  <h1>{ideaUpvotes.length}</h1>
                 </Button>
               </div>
             </section>
@@ -72,24 +85,46 @@ const ModalDialog = ({explore, idea, isOpen, onClose, upvoteToggle=null, setUpvo
           </ModalBody>
           <ModalFooter className="flex-col">
             {explore && <div className="gap-display idea-modal-footer">
-              <Input placeholder="comment section" size="sm" className="" />
-              <Button colorScheme="teal" variant="solid" size="sm">
+            <Input
+                placeholder="comment section"
+                size="sm"
+                className=""
+                name="comment"
+                value={comment}
+                onChange={e => setComment(e.target.value)}
+              />
+              <Button
+                colorScheme="teal"
+                variant="solid"
+                size="sm"
+                onClick={submitComment}
+              >
                 comment
               </Button>
             </div>}
             <div className="comment-list">
-              {
-                comments?.map(({id, comment})=>
-                  <div className="single-comment">
-                    <div className="profile-details">
-                      <Icon as={FaUserCircle} w={5} h={5}></Icon>
-                      <h3 className="name">Person name</h3>
-                      <small className="date">{'2022-05-07'.split('').slice(0, 10).join('').split('-').reverse().join('-')}</small>
-                    </div>
-                    <h1 key={{id}} className="comment">{comment}</h1>
-                  </div> 
-                )
-              }
+            {ideaComments.map(({ id, comment, user_profile }) => (
+                <div className="single-comment" key={id}>
+                  <div className="profile-details">
+                    <Icon as={FaUserCircle} w={5} h={5}></Icon>
+                    <h3 className="name">
+                      {user_profile.firstname + " " + user_profile.lastname}
+                    </h3>
+                    <small className="date">
+                      {"2022-05-07"
+                        .split("")
+                        .slice(0, 10)
+                        .join("")
+                        .split("-")
+                        .reverse()
+                        .join("-")}
+                    </small>
+                  </div>
+                  <h1 key={{ id }} className="comment">
+                    {comment}
+                  </h1>
+                </div>
+              ))}
             </div>
           </ModalFooter>
         </ModalContent>
