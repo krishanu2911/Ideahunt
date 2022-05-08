@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -11,34 +11,37 @@ import {
   Input,
   Tag,
   Text,
-  Heading
+  Heading,
 } from "@chakra-ui/react";
 import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
-import { Icon } from '@chakra-ui/react';
-import { FaUserCircle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Icon } from "@chakra-ui/react";
+import { FaUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { useTheme } from "Context";
+import { supabase } from "supabaseClient";
 
 const ModalDialog = (props) => {
   const { themeState } = useTheme();
   const { theme } = themeState;
   const {
-    explore, 
-    idea, 
-    isOpen, 
-    onClose, 
-    ideaComments=[], 
-    submitComment=null, 
-    comment=null, 
-    setComment=null, 
-    upvoteToggle=null, 
-    setUpvoteToggle=null, 
-    ideaUpvotes=9,
+    explore,
+    idea,
+    isOpen,
+    onClose,
+    ideaComments = [],
+    submitComment = null,
+    comment = null,
+    setComment = null,
+    upvoteToggle = null,
+    setUpvoteToggle = null,
+    ideaUpvotes = 9,
     isUpvotedByMe,
-    updateUpvote=null} = props;
-  const { title, description, created_at, user_profile } = idea;
-  const {firstname,lastname} = user_profile;
+    updateUpvote = null,
+  } = props;
+  const { title, description, created_at, user_profile, category } = idea;
+  const { category_name } = category;
+  const { firstname, lastname } = user_profile; 
   return (
     <div>
       <Modal isOpen={isOpen} onClose={onClose} size={"full"} colorScheme="teal">
@@ -71,18 +74,20 @@ const ModalDialog = (props) => {
                   colorScheme="teal"
                   variant={upvoteToggle ? "solid" : "outline"}
                   onClick={() => {
-                    setUpvoteToggle(prev => !prev);
+                    setUpvoteToggle((prev) => !prev);
                     updateUpvote();
                   }}
                 >
+
                   {isUpvotedByMe() ? <ArrowDownIcon /> : <ArrowUpIcon />}
+
                   <h1>{ideaUpvotes.length}</h1>
                 </Button>
               </div>
             </section>
             <section className="gap-display">
               <Tag size="lg" variant="subtle" colorScheme="teal">
-                Category
+                {category_name}
               </Tag>
               <div className="date-section">
                 Date :{" "}
@@ -121,7 +126,7 @@ const ModalDialog = (props) => {
                 className=""
                 name="comment"
                 value={comment}
-                onChange={e => setComment(e.target.value)}
+                onChange={(e) => setComment(e.target.value)}
               />
               <Button
                 colorScheme="teal"
@@ -179,6 +184,5 @@ const ModalDialog = (props) => {
       </Modal>
     </div>
   );
-}
-
+};
 export { ModalDialog };
