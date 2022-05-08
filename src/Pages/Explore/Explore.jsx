@@ -49,7 +49,7 @@ export default function Explore() {
             />
             <Input type="text" placeholder="Search idea" />
           </InputGroup>
-          <Link to={`/Profile/${user ? user?.id : ""}`}>
+          <Link to={`${ user ? `/Profile/${user ? user?.id : ""}` : "/login"}`}>
             <Button colorScheme="teal" variant="solid">Add new idea</Button>
             {/* <Icon as={AiOutlinePlus} w={9} height={9} color="white" className="explore_icon"></Icon> */}
           </Link>
