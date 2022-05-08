@@ -6,10 +6,11 @@ import { Ideamodal } from "../../Components/index";
 import { supabase } from "supabaseClient";
 import { useState } from "react";
 import { useEffect } from "react";
-// import { useAuth } from "Context";
+import { Link } from "react-router-dom";
+import { useAuth } from "Context";
 export default function Explore() {
   const [ideas, setIdeas] = useState([]);
-
+  const { user } = useAuth();
   const getAllIdeas = async () => {
     try {
       let { data, error } = await supabase
@@ -42,9 +43,11 @@ export default function Explore() {
             <Input type="text" placeholder="Search idea" />
           </InputGroup>
         </div>
+        <Link to={`/Profile/${user ? user?.id : ""}`}>
         <Button colorScheme="teal" size="lg">
           New Idea
         </Button>
+        </Link>
       </div>
       <div className="idea_models">
         {ideas.map((idea) => {
