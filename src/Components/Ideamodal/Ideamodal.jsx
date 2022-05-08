@@ -12,7 +12,7 @@ import { ModalDialog } from 'Components';
 import { Link } from "react-router-dom";
 
 function Ideamodal({idea}) {
-  const { id, title, description, user_profile } = idea;
+  const { id, title, description, user_profile, user_id } = idea;
   const {firstname,lastname} = user_profile;
   const [upvoteToggle, setUpvoteToggle] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -111,7 +111,7 @@ function Ideamodal({idea}) {
     setComment("");
   };
 
-  const isUpvotedByMe = () => ideaUpvotes?.find(vote => vote.idea_id === id);
+ const isUpvotedByMe = () => ideaUpvotes?.find(vote => vote.user_id === id);
 
   return (
     <div>
