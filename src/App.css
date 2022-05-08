@@ -39,6 +39,7 @@ h1{
   left: 0;
   right: 0;
   grid-area: nav-section;
+  z-index: 1;
 }
 .footer-section{
   grid-area: footer-section;
@@ -46,6 +47,7 @@ h1{
 
 .main-content{
   grid-area: main-section;
+  z-index: 0;
 }
 .explore-header{
   display: flex;

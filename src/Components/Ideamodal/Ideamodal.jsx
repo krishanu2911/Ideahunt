@@ -9,6 +9,7 @@ import { useTheme } from "Context";
 import { supabase } from "supabaseClient";
 import { useAuth } from "Context";
 import { ModalDialog } from 'Components';
+import { Link } from "react-router-dom";
 
 function Ideamodal({idea}) {
   const { id, title, description, user_profile } = idea;
@@ -114,15 +115,17 @@ function Ideamodal({idea}) {
 
   return (
     <div>
-        <div className="idea-showcase">
+      <div className="idea-showcase">
         <section>
           <div onClick={onOpen} className="cursor">
             <h1 className={`bold-font ${theme_text}`}>{title}</h1>
             <p className={`idea-intro ${theme_text}`}>{description}</p>
           </div>
-          <Button colorScheme="teal" variant="link">
-            {firstname + " " + lastname}
-          </Button>
+          <Link to={`/Profile/${idea.user_profile.id}`}>
+            <Button colorScheme="teal" variant="link">
+              {firstname + " " + lastname}
+            </Button>
+          </Link>
         </section>
         <div className="flex-col">
           <Button
@@ -142,18 +145,20 @@ function Ideamodal({idea}) {
           </Button>
         </div>
       </div>
-        <ModalDialog explore={true} 
-                    idea={idea} 
-                    isOpen={isOpen} 
-                    submitComment={submitComment} 
-                    comment={comment} 
-                    setComment={setComment} 
-                    ideaComments={ideaComments} 
-                    onClose={onClose} 
-                    upvoteToggle={upvoteToggle} 
-                    setUpvoteToggle={setUpvoteToggle}
-                    ideaUpvotes={ideaUpvotes}
-                    updateUpvote={updateUpvote}/>
+      <ModalDialog
+        explore={true}
+        idea={idea}
+        isOpen={isOpen}
+        submitComment={submitComment}
+        comment={comment}
+        setComment={setComment}
+        ideaComments={ideaComments}
+        onClose={onClose}
+        upvoteToggle={upvoteToggle}
+        setUpvoteToggle={setUpvoteToggle}
+        ideaUpvotes={ideaUpvotes}
+        updateUpvote={updateUpvote}
+      />
     </div>
   );
 }
