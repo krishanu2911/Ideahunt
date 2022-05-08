@@ -106,6 +106,7 @@ const ProfileForm = () => {
                 First name
               </FormLabel>
               <Input
+                color={theme === "light" ? "black" : "white"}
                 onChange={(e) => {
                   user?.id === userId && handleChange(e);
                 }}
@@ -121,6 +122,7 @@ const ProfileForm = () => {
                 Last name
               </FormLabel>
               <Input
+                color={theme === "light" ? "black" : "white"}
                 name="lastname"
                 onChange={(e) => {
                   user?.id === userId && handleChange(e);
@@ -136,6 +138,7 @@ const ProfileForm = () => {
                 Brief Bio
               </FormLabel>
               <Textarea
+                color={theme === "light" ? "black" : "white"}
                 name="bio"
                 onChange={(e) => {
                   user?.id === userId && handleChange(e);
@@ -178,6 +181,7 @@ const ProfileForm = () => {
                 Email
               </FormLabel>
               <Input
+                color={theme === "light" ? "black" : "white"}
                 name="email"
                 onChange={(e) => {
                   user?.id === userId && handleChange(e);
@@ -199,6 +203,7 @@ const ProfileForm = () => {
                 Github
               </FormLabel>
               <Input
+                color={theme === "light" ? "black" : "white"}
                 name="github_url"
                 onChange={(e) => {
                   user?.id === userId && handleChange(e);
@@ -214,6 +219,7 @@ const ProfileForm = () => {
                 LinkedIn
               </FormLabel>
               <Input
+                color={theme === "light" ? "black" : "white"}
                 name="linkedin_url"
                 onChange={(e) => {
                   user?.id === userId && handleChange(e);
@@ -229,6 +235,7 @@ const ProfileForm = () => {
                 Twitter
               </FormLabel>
               <Input
+                color={theme === "light" ? "black" : "white"}
                 name="twitter_url"
                 onChange={(e) => {
                   user?.id === userId && handleChange(e);
