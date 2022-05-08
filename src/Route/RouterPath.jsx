@@ -9,7 +9,7 @@ function RouterPath() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/explore" element={<Explore />} />
-      <Route path="/Profile" element={<Profile />} />
+      {/* <Route path="/Profile" element={<Profile />} /> */}
       <Route path="/Profile/:userId" element={<Profile />} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
