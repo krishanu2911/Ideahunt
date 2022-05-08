@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDisclosure, Button } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { ArrowUpIcon } from "@chakra-ui/icons";
+import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
 import { useTheme } from "Context";
 import { supabase } from "supabaseClient";
@@ -51,28 +51,48 @@ function Ideamodal({ idea }) {
   const updateUpvote = async () => {
     if (upvoteToggle) {
       try {
-        const { data, error } = await supabase
+        const { data:upvote, error } = await supabase
           .from("upvotes")
-          .delete()
-          .match({ idea_id: id, upvotedby_userid: user.id });
-        setIsUpvoted(true);
+          .select('*')
+          .match({"idea_id": id, upvotedby_userid : user.id});
+          console.log(upvote)
+          debugger;
         if (error) console.log(error);
-      } catch (e) {
-        console.log(e);
-      }
-    } else {
+        else{
+          try 
+          {
+            const { data, error } = await supabase
+              .from("upvotes")
+              .delete()
+              .eq('id',upvote[0].id);
+            setIsUpvoted(true);
+            setUpvoteToggle(false)
+            if (error) console.log(error);
+          } catch (e) {
+            console.log(e);
+          }
+        }
+      
+    } 
+    catch(e){
+      console.log(e)
+    }
+  }
+    else{
       try {
         const { data, error } = await supabase
           .from("upvotes")
           .insert([{ idea_id: id, upvotedby_userid: user.id }]);
         setIsUpvoted(true);
+        setUpvoteToggle(true);
         if (error) console.log(error);
       } catch (e) {
         console.log(e);
       }
+        }
+     
     }
-  };
-
+  
   const getUpvotesByIdeaId = async () => {
     try {
       let { data, error } = await supabase
@@ -111,7 +131,7 @@ function Ideamodal({ idea }) {
     setComment("");
   };
 
- const isUpvotedByMe = () => ideaUpvotes?.find(vote => vote.idea_id === id);
+ const isUpvotedByMe = () => ideaUpvotes?.some(vote => vote.upvotedby_userid === user.id)  
 
   return (
     <div>
@@ -141,13 +161,13 @@ function Ideamodal({ idea }) {
           <Button
             className="buttonZindex"
             colorScheme="teal"
-            variant={isUpvotedByMe() ? "solid" : "outline"}
+            variant={ "outline" }
             onClick={() => {
               setUpvoteToggle((prev) => !prev);
               updateUpvote();
             }}
           >
-            <ArrowUpIcon />
+           { isUpvotedByMe() ? <ArrowDownIcon/> : <ArrowUpIcon />}
             <h1>{ideaUpvotes.length}</h1>
           </Button>
           <Button colorScheme="teal" variant="solid" onClick={onOpen}>
@@ -168,6 +188,7 @@ function Ideamodal({ idea }) {
         setUpvoteToggle={setUpvoteToggle}
         ideaUpvotes={ideaUpvotes}
         updateUpvote={updateUpvote}
+        isUpvotedByMe = {isUpvotedByMe}
       />
     </div>
   );
