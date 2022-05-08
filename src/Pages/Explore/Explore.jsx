@@ -14,10 +14,7 @@ export default function Explore() {
     try {
       let { data, error } = await supabase
         .from("ideas")
-        .select(
-          `*, user_profile!ideas_user_id_fkey 
-      (id,firstname,lastname)`
-        )
+        .select(`*, user_profile!ideas_user_id_fkey(id,firstname,lastname)`)
         .order("created_at", { ascending: false });
       setIdeas(data);
       if (error) {

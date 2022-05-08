@@ -23,7 +23,8 @@ import { supabase } from "supabaseClient";
 import { useAuth } from "Context";
 
 function Ideamodal({ idea }) {
-  const { id, title, description, created_at, comments, upvotes } = idea;
+  const { id, title, description, created_at, user_profile } = idea;
+  const {firstname,lastname} = user_profile;
   const [upvoteToggle, setUpvoteToggle] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { themeState } = useTheme();
@@ -32,20 +33,17 @@ function Ideamodal({ idea }) {
   const [comment, setComment] = useState("");
   const { user } = useAuth();
   const [ideaComments, setIdeaComments] = useState([]);
+  const [ideaUpvotes, setIdeaUpvotes] = useState([]);
   const [commentAdded, setCommentAdded] = useState(false);
+  const [isUpvoted, setIsUpvoted] = useState(false);
   const getCommentsByIdeaId = async () => {
     try {
       let { data, error } = await supabase
         .from("comments")
-        .select(
-          `
-    *,user_profile(firstname,lastname)
-  `
-        )
+        .select(`*,user_profile(firstname,lastname)`)
         .eq("idea_id", id);
       setIdeaComments(data);
       setCommentAdded(false);
-      console.log(data);
       if (error) {
         console.log(error);
       }
@@ -57,6 +55,52 @@ function Ideamodal({ idea }) {
   useEffect(() => {
     getCommentsByIdeaId();
   }, [commentAdded]);
+
+  const updateUpvote = async () => {
+    if (upvoteToggle) {
+      try {
+        const { data, error } = await supabase
+          .from("upvotes")
+          .delete()
+          .match({ idea_id: id, upvotedby_userid: user.id });
+        setIsUpvoted(true);
+        if (error) console.log(error);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      try {
+        const { data, error } = await supabase
+          .from("upvotes")
+          .insert([{ idea_id: id, upvotedby_userid: user.id }]);
+        console.log(data);
+        setIsUpvoted(true);
+        if (error) console.log(error);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
+  const getUpvotesByIdeaId = async () => {
+    try {
+      let { data, error } = await supabase
+        .from("upvotes")
+        .select(`*`)
+        .eq("idea_id", id);
+      setIdeaUpvotes(data);
+      setIsUpvoted(false);
+      if (error) {
+        console.log(error);
+      }
+    } catch (e) {
+      console.log("Some error occured", e);
+    }
+  };
+
+  useEffect(() => {
+    getUpvotesByIdeaId();
+  }, [isUpvoted]);
 
   const postComment = async () => {
     try {
@@ -75,6 +119,9 @@ function Ideamodal({ idea }) {
     postComment();
     setComment("");
   };
+
+  const isUpvotedByMe = () => ideaUpvotes?.find(vote => vote.idea_id === id);
+
   return (
     <div>
       <div className="idea-showcase">
@@ -84,18 +131,21 @@ function Ideamodal({ idea }) {
             <p className={`idea-intro ${theme_text}`}>{description}</p>
           </div>
           <Button colorScheme="teal" variant="link">
-            Author Name
+            {firstname + " " + lastname}
           </Button>
         </section>
         <div className="flex-col">
           <Button
             className="buttonZindex"
             colorScheme="teal"
-            variant={upvoteToggle ? "solid" : "outline"}
-            onClick={() => setUpvoteToggle((prev) => !prev)}
+            variant={isUpvotedByMe() ? "solid" : "outline"}
+            onClick={() => {
+              setUpvoteToggle(prev => !prev);
+              updateUpvote();
+            }}
           >
             <ArrowUpIcon />
-            {/* <h1>{upvotes.length}</h1> */}
+            <h1>{ideaUpvotes.length}</h1>
           </Button>
           <Button colorScheme="teal" variant="solid" onClick={onOpen}>
             View
@@ -115,7 +165,7 @@ function Ideamodal({ idea }) {
               <div>
                 <h1>{idea.title}</h1>
                 <Button colorScheme="teal" variant="link">
-                  Author Name
+                  {firstname + " " + lastname}
                 </Button>
               </div>
               <div className="gap-display">
@@ -125,10 +175,13 @@ function Ideamodal({ idea }) {
                 <Button
                   colorScheme="teal"
                   variant={upvoteToggle ? "solid" : "outline"}
-                  onClick={() => setUpvoteToggle((prev) => !prev)}
+                  onClick={() => {
+                    setUpvoteToggle(prev => !prev);
+                    updateUpvote();
+                  }}
                 >
                   <ArrowUpIcon />
-                  {/* <h1>{upvotes.length}</h1> */}
+                  <h1>{ideaUpvotes.length}</h1>
                 </Button>
               </div>
             </section>
@@ -142,7 +195,7 @@ function Ideamodal({ idea }) {
           <ModalBody className="flex-col">
             <h1>{idea.description} </h1>
             <div className="date-section gap-display">
-              <h2>Posted at</h2>
+              <span>Posted at</span>
               <span>
                 {created_at
                   .split("")
@@ -162,7 +215,7 @@ function Ideamodal({ idea }) {
                 className=""
                 name="comment"
                 value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                onChange={e => setComment(e.target.value)}
               />
               <Button
                 colorScheme="teal"
@@ -174,11 +227,13 @@ function Ideamodal({ idea }) {
               </Button>
             </div>
             <div className="comment-list">
-              {ideaComments.map(({ id, comment }) => (
+              {ideaComments.map(({ id, comment, user_profile }) => (
                 <div className="single-comment" key={id}>
                   <div className="profile-details">
                     <Icon as={FaUserCircle} w={5} h={5}></Icon>
-                    <h3 className="name">Person name</h3>
+                    <h3 className="name">
+                      {user_profile.firstname + " " + user_profile.lastname}
+                    </h3>
                     <small className="date">
                       {"2022-05-07"
                         .split("")
