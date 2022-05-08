@@ -25,6 +25,19 @@ const ProfileForm = () => {
   const { userId } = useParams();
   const { themeState } = useTheme();
   const { theme } = themeState;
+  const userdataUpdate = async () => {
+    try {
+      const { data, error } = await supabase
+        .from("user_profile")
+        .update(initialUserData)
+        .eq("id", userId);
+      if (error) {
+        console.log(error);
+      }
+    } catch (e) {
+      console.log("Some error occured", e);
+    }
+  };
   useEffect(() => {
     (async () => {
       try {
@@ -48,20 +61,25 @@ const ProfileForm = () => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-      if(name === "email"){
-        console.log(value)
-        !emailRegex.test(value) ? setError( prevValue => ({...prevValue,
-          [name]: {
-            ...prevValue[name],
-            isError: true,
-          }})) : 
-          setError( prevValue => ({...prevValue,
+    if (name === "email") {
+      console.log(value);
+      !emailRegex.test(value)
+        ? setError((prevValue) => ({
+            ...prevValue,
+            [name]: {
+              ...prevValue[name],
+              isError: true,
+            },
+          }))
+        : setError((prevValue) => ({
+            ...prevValue,
             [name]: {
               ...prevValue[name],
               isError: false,
-            }}))
-        console.log(error)
-      }
+            },
+          }));
+      console.log(error);
+    }
     setInitialUserData({ ...initialUserData, [name]: value });
   };
   console.log(initialUserData);
@@ -88,7 +106,9 @@ const ProfileForm = () => {
                 First name
               </FormLabel>
               <Input
-                onChange={ (e) =>{user?.id === userId && handleChange(e)}}
+                onChange={(e) => {
+                  user?.id === userId && handleChange(e);
+                }}
                 name="firstname"
                 value={initialUserData.firstname}
                 id="first-name"
@@ -102,7 +122,9 @@ const ProfileForm = () => {
               </FormLabel>
               <Input
                 name="lastname"
-                onChange={ (e) =>{user?.id === userId && handleChange(e)}}
+                onChange={(e) => {
+                  user?.id === userId && handleChange(e);
+                }}
                 value={initialUserData.lastname}
                 id="last-name"
                 placeholder="Last name"
@@ -115,13 +137,20 @@ const ProfileForm = () => {
               </FormLabel>
               <Textarea
                 name="bio"
-                onChange={ (e) =>{user?.id === userId && handleChange(e)}}
+                onChange={(e) => {
+                  user?.id === userId && handleChange(e);
+                }}
                 value={initialUserData.bio}
                 id="bio"
                 placeholder="Please Describe yourself in few Words"
               />
               {user?.id === userId ? (
-                <Button colorScheme="teal" variant="outline" my={2}>
+                <Button
+                  colorScheme="teal"
+                  variant="outline"
+                  my={2}
+                  onClick={() => userdataUpdate()}
+                >
                   Save
                 </Button>
               ) : null}
@@ -159,7 +188,9 @@ twitter_url: null
               </FormLabel>
               <Input
                 name="email"
-                onChange={ (e) =>{user?.id === userId && handleChange(e)}}
+                onChange={(e) => {
+                  user?.id === userId && handleChange(e);
+                }}
                 value={initialUserData.email}
                 id="email"
                 placeholder="Enter your Email"
@@ -178,7 +209,9 @@ twitter_url: null
               </FormLabel>
               <Input
                 name="github_url"
-                onChange={ (e) =>{user?.id === userId && handleChange(e)}}
+                onChange={(e) => {
+                  user?.id === userId && handleChange(e);
+                }}
                 value={initialUserData.github_url}
                 id="Github"
                 placeholder="Github Url"
@@ -191,7 +224,9 @@ twitter_url: null
               </FormLabel>
               <Input
                 name="linkedin_url"
-                onChange={ (e) =>{user?.id === userId && handleChange(e)}}
+                onChange={(e) => {
+                  user?.id === userId && handleChange(e);
+                }}
                 value={initialUserData.linkedin_url}
                 id="linkedIn"
                 placeholder="LinkedIn Url"
@@ -204,7 +239,9 @@ twitter_url: null
               </FormLabel>
               <Input
                 name="twitter_url"
-                onChange={ (e) =>{user?.id === userId && handleChange(e)}}
+                onChange={(e) => {
+                  user?.id === userId && handleChange(e);
+                }}
                 value={initialUserData.twitter_url}
                 id="twitter"
                 placeholder="Twitter Url"
@@ -213,9 +250,7 @@ twitter_url: null
                 <Button colorScheme="teal" variant="outline" my={2}>
                   Save
                 </Button>
-              ) : (
-                null
-              )}
+              ) : null}
             </FormControl>
           </div>
         </div>
