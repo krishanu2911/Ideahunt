@@ -12,15 +12,16 @@ import { MdLogout, MdExplore } from 'react-icons/md';
 const Topnav = () => {
     const { themeState, themeDispatch } = useTheme();
     const { theme } = themeState;
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const {logoutHandler, userLogin , user} = useAuth();
     const [showDropdown, setShowDropdown] = useState();
+  const logo = 'https://ik.imagekit.io/ecomdiagonalley/Ideahunt/Hackathonlogo_x4b03tz7a.svg?ik-sdk-version=javascript-1.4.3&updatedAt=1652029750780'
   return (
     <div className={`topnav ${theme==="light" ? "topnav-light" : "topnav-dark"}`}>
         <h3 className="header" 
             onClick={()=>{
               setShowDropdown(false)
-              navigate('/')}}>Ide<span className="header-span">a</span>hunt</h3>
+              navigate('/')}}><img src={logo} alt="logo" className="logo"/></h3>
         <div className="topnav-actions">
             {theme==="light" ? 
                 <MoonIcon w={10} h={10} color="teal" className="icon" onClick={()=>themeDispatch({type: "dark"})}/> 
@@ -31,7 +32,7 @@ const Topnav = () => {
                 <Icon as={FaUserAlt} w={10} h={10} className="icon" color="teal" onClick={()=>setShowDropdown(!showDropdown)}></Icon>
                 {showDropdown &&
                   <div className="topnav-links">
-                  
+                    <span>{`Hello, ${user?.user_metadata?.firstname}`}</span>
                     <Button leftIcon={<FiUser />}
                             colorScheme="black" 
                             variant='link' 

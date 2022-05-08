@@ -11,3 +11,4 @@ export { Footer } from './Footer/Footer';
 export { ProfileForm } from './ProfileForm/ProfileForm';
 export { IdeaForm } from './IdeaForm/IdeaForm';
 export { ModalDialog } from './ModalDialog/ModalDialog';
+export { RequireAuth } from './RequireAuth/RequireAuth';

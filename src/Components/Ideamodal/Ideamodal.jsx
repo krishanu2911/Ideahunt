@@ -111,7 +111,7 @@ function Ideamodal({idea}) {
     setComment("");
   };
 
- const isUpvotedByMe = () => ideaUpvotes?.find(vote => vote.user_id === id);
+ const isUpvotedByMe = () => ideaUpvotes?.find(vote => vote.idea_id === id);
 
   return (
     <div>

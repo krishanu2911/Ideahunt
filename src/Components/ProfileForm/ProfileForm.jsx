@@ -61,7 +61,6 @@ const ProfileForm = () => {
     const name = e.target.name;
     const value = e.target.value;
     if (name === "email") {
-      console.log(value);
       !emailRegex.test(value)
         ? setError((prevValue) => ({
             ...prevValue,
@@ -81,7 +80,7 @@ const ProfileForm = () => {
     }
     setInitialUserData({ ...initialUserData, [name]: value });
   };
-  console.log(initialUserData);
+
   return (
     <div className="profile-page-container" centercontent>
       <Container maxW="4xl" centerContent>

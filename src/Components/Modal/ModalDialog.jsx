@@ -16,6 +16,7 @@ import { ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
 import { Icon } from '@chakra-ui/react';
 import { FaUserCircle } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 const ModalDialog = () => {
   return (
@@ -36,9 +37,11 @@ const ModalDialog = () => {
                 </Button>
               </div>
               <div className="gap-display">
-                <Button colorScheme="teal" variant="solid">
-                  Connect
-                </Button>
+                <Link to="/">
+                  <Button colorScheme="teal" variant="solid">
+                    Connect
+                  </Button>
+                </Link>
                 <Button
                   colorScheme="teal"
                   variant={upvoteToggle ? "solid" : "outline"}
