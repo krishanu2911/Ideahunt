@@ -65,9 +65,11 @@ const ModalDialog = (props) => {
               </div>
               <div className="gap-display button-actions">
                 {explore && (
+                  <Link to={`/Profile/${idea.user_id}`}>
                   <Button colorScheme="teal" variant="solid" size="sm">
                     Connect
                   </Button>
+                  </Link>
                 )}
                 <Button
                   size="sm"
