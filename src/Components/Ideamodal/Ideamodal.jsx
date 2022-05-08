@@ -123,17 +123,9 @@ function Ideamodal({ idea }) {
           </div>
 
           <Link to={`/Profile/${idea.user_profile.id}`}>
-            <Button colorScheme="teal" variant="link">
-              {isUserSame ? (
-            "My idea"
-          ) : (
-            <>
               <Button colorScheme="teal" variant="link">
                 {firstname + " " + lastname}
               </Button>
-            </>
-          )}
-            </Button>
           </Link>
 
         </section>
