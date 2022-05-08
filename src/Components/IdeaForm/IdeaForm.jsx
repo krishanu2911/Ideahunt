@@ -100,11 +100,11 @@ const IdeaForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     postIdea();
-    setForm({
+    setForm(()=>({
       title: "",
       description: "",
       category: "",
-    });
+    }));
   };
 
   return (

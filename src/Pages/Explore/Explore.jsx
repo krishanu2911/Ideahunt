@@ -32,7 +32,7 @@ export default function Explore() {
       let { data, error } = await supabase
         .from("ideas")
         .select(
-          `*, user_profile!ideas_user_id_fkey(id,firstname,lastname),category(*)`
+          `*, user_profile!ideas_user_id_fkey(id,firstname,lastname),category(*),upvotes(*)`
         )
         .order("created_at", { ascending: false });
       setIdeas(data);
@@ -49,10 +49,10 @@ export default function Explore() {
     getAllIdeas();
   }, [isFiltered]);
 
-  const searchItems = (searchText) => {
+  const searchItems = searchText => {
     setSearchText(searchText);
     if (searchText !== "") {
-      const filteredIdeas = ideas.filter((item) => {
+      const filteredIdeas = ideas.filter(item => {
         return Object.values(item.title)
           .join("")
           .toLowerCase()
@@ -63,6 +63,12 @@ export default function Explore() {
     } else {
       setIdeas(initialIdeas);
     }
+  };
+
+  const sortIdeas = ascending => {
+    ascending
+      ? ideas.sort((a, b) => (a.upvotes.length) -(b.upvotes.length))
+      : ideas.sort((a, b) => (b.upvotes.length) - (a.upvotes.length));
   };
 
   return (
@@ -78,7 +84,7 @@ export default function Explore() {
               type="text"
               placeholder="Search idea"
               name="seacrh"
-              onInput={(e) => searchItems(e.target.value)}
+              onInput={e => searchItems(e.target.value)}
             />
           </InputGroup>
           <Link to={`${user ? `/Profile/${user ? user?.id : ""}` : "/login"}`}>
@@ -87,48 +93,61 @@ export default function Explore() {
             </Button>
             {/* <Icon as={AiOutlinePlus} w={9} height={9} color="white" className="explore_icon"></Icon> */}
           </Link>
-        </div>
-        <div className="explore-actions">
-          <Select
-            variant="outline"
-            color={theme === "light" ? "#000" : "#fff"}
-            placeholder="Category"
-            name="category"
-            value=""
-            className="explore_select"
-          >
-            {category.map((cat) => (
-              <option key={cat} value="" className="options">
-                Options
-              </option>
-            ))}
-          </Select>
-          {sort ? (
-            <Icon
-              as={BiUpArrowAlt}
-              w={9}
-              height={9}
-              color="white"
-              className="explore_icon"
-              onClick={() => setSort(false)}
-            ></Icon>
-          ) : (
-            <Icon
-              as={BiDownArrowAlt}
-              w={9}
-              height={9}
-              color="white"
-              className="explore_icon"
-              onClick={() => setSort(true)}
-            ></Icon>
-          )}
-          <Button variant="outline" colorScheme="teal">
-            Reset
-          </Button>
+          <div className="explore-actions">
+           {sort ? 
+              <Button
+                colorScheme="teal"
+                variant="solid"
+                onClick={() => {
+                  setSort(false);
+                  sortIdeas(false);
+                }}
+              >
+                <BiUpArrowAlt />Most Upvotes
+              </Button>
+          :
+              <Button
+                colorScheme="teal"
+                variant="solid"
+                onClick={() => {
+                  setSort(true);
+                  sortIdeas(true);
+                }}
+              >
+                <BiDownArrowAlt />Least upvotes
+              </Button>}
+          
+
+            {/* {sort ? (
+              <Icon
+                as={BiUpArrowAlt}
+                w={9}
+                height={9}
+                color="white"
+                className="explore_icon"
+                onClick={() => {
+                  setSort(false);
+                  sortIdeas(false);
+                }}
+              ></Icon>
+            ) : (
+              <Icon
+                as={BiDownArrowAlt}
+                w={9}
+                height={9}
+                color="white"
+                className="explore_icon"
+                onClick={() => {
+                  setSort(true);
+                  sortIdeas(true);
+                }}
+              ></Icon>
+            )} */}
+          </div>
         </div>
       </div>
       <div className="idea_models">
-        {ideas.map((idea) => {
+        {ideas.map(idea => {
           return <Ideamodal idea={idea} key={idea.id} />;
         })}
       </div>
