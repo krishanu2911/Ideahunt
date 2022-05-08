@@ -61,7 +61,6 @@ const ProfileForm = () => {
     const name = e.target.name;
     const value = e.target.value;
     if (name === "email") {
-      console.log(value);
       !emailRegex.test(value)
         ? setError((prevValue) => ({
             ...prevValue,

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { RequireAuth } from 'Components';
 import { Login, Signup, Home, Explore, Profile, ErrorPage } from "../Pages/index";
 import "../App.css"
 function RouterPath() {
@@ -9,8 +10,7 @@ function RouterPath() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/explore" element={<Explore />} />
-      {/* <Route path="/Profile" element={<Profile />} /> */}
-      <Route path="/Profile/:userId" element={<Profile />} />
+      <Route path="/Profile/:userId" element={<RequireAuth><Profile /></RequireAuth>} />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );

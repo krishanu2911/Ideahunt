@@ -122,3 +122,9 @@
         width: 24ch;
     }
 }
+
+@media only screen and (max-width: 400px) {
+    .idea-intro{
+        width: 15ch;
+    }
+}

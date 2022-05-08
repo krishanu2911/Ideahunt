@@ -5,7 +5,7 @@ import style from "./Auth.module.css";
 import { Link } from "react-router-dom";
 import { useAuth, useTheme } from "../../Context";
 import { emailRegex, passwordRegex } from "../../Regex/Regex";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ViewIcon, ViewOffIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
 const defaultForm = {
@@ -15,6 +15,7 @@ const defaultForm = {
 
 const LoginForm = () => {
   let navigate = useNavigate();
+  const location = useLocation();
   const [form, setForm] = useState(defaultForm);
   const [submitMode, setSubmitMode] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -56,7 +57,7 @@ const LoginForm = () => {
         setError(error.message);
         Toast("Some error occured", "error");
       } else {
-        navigate("/");
+        navigate(location.state?.from?.pathname || "/");
         setForm({ email: "", password: "" });
       }
     } catch (e) {
