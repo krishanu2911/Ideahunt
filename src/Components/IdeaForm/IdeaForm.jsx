@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from "react";
 import "../ProfileForm/ProfileForm.css";
 import { useAuth, useTheme } from "Context";
-import {
-  Container,
-  FormControl,
-  FormLabel,
-  Select,
-  Input,
-  Textarea,
-  Text,
-  Button,
-} from "@chakra-ui/react";
-import { supabase } from "supabaseClient";
+import { Container, 
+        FormControl, 
+        FormLabel, 
+        Select, 
+        Input, 
+        Textarea, 
+        Text, 
+        Button,
+        Tag, 
+        Heading,
+        useDisclosure } from "@chakra-ui/react";
+import { supabase } from 'supabaseClient';
+import { ArrowUpIcon } from '@chakra-ui/icons';
+import { ModalDialog } from 'Components';
 
+const ideas = [{ title: "Social media app", 
+description: "description", 
+category: "Web development",
+upvotes: [{}, {}], 
+created_at: "2022-05-07", 
+comments: ["Good job", "would like to contribute"] }]
 const IdeaForm = () => {
+  
   const { themeState } = useTheme();
   const { theme } = themeState;
   const [showForm, setShowForm] = useState(false);
   const { user } = useAuth();
   const [category, setCategory] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [form, setForm] = useState({
     title: "",
@@ -83,8 +94,7 @@ const IdeaForm = () => {
       <Button
         variant="outline"
         colorScheme="teal"
-        onClick={() => setShowForm(!showForm)}
-      >
+        onClick={() => setShowForm(!showForm)}>
         {showForm ? "Hide form" : "Add idea"}
       </Button>
       {showForm && (
@@ -131,8 +141,7 @@ const IdeaForm = () => {
                   />
                   <FormLabel
                     htmlFor="category"
-                    color={theme === "light" ? "black" : "white"}
-                  >
+                    color={theme === "light" ? "black" : "white"} >
                     Category
                   </FormLabel>
                   <Select
@@ -151,21 +160,13 @@ const IdeaForm = () => {
                       >
                         {c.category_name}
                       </option>
-                    ))}
-
-                    {/* <option value="Backend" className="options">
-                      Backend
-                    </option>
-                    <option value="Web development" className="options">
-                      Web development
-                    </option> */}
-                  </Select>
+                    ))} 
+                    </Select>
                   <Button
                     colorScheme="teal"
                     variant="outline"
                     my={2}
-                    type="submit"
-                  >
+                    type="submit">
                     Save
                   </Button>
                 </FormControl>
@@ -174,7 +175,28 @@ const IdeaForm = () => {
           </div>
         </Container>
       )}
-      <div className="idea-table"></div>
+     <div className="idea-listing">
+        <Heading as='h3' size='lg' color={theme === "light" ? "#000" : "#fff"}>My ideas</Heading>
+        {ideas.map((idea, index) => 
+        <div className="main">
+          <div className="idea-div" onClick={onOpen}>
+            <Text fontSize='lg' color={theme === "light" ? "#000" : "#fff"} >{index+1}</Text>
+            <div>
+              <div className="idea-header">
+                <Heading as='h4' size='sm' color={theme === "light" ? "#000" : "#fff"} className="idea-details">
+                  Social Media app
+                </Heading>
+                <div className="idea-upvotes"><ArrowUpIcon />99</div>
+              </div>
+              <Tag size="md" variant="subtle" colorScheme="teal" className="idea-details">
+                Web development
+              </Tag>
+              <Text fontSize='sm' color={theme === "light" ? "#000" : "#fff"} className="idea-desc idea-details">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</Text>
+            </div>
+          </div>
+          <ModalDialog idea={idea} isOpen={isOpen} onClose={onClose}/>
+        </div>)}
+    </div>
     </div>
   );
 };

@@ -1,30 +1,18 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   useDisclosure,
   Button,
-  Input,
-  Tag,
-  SkeletonCircle,
 } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
 import { Link } from "react-router-dom";
 import { useTheme } from "Context";
-import { Icon } from "@chakra-ui/react";
-import { FaUserCircle } from "react-icons/fa";
 import { supabase } from "supabaseClient";
 import { useAuth } from "Context";
+import { ModalDialog } from 'Components';
 
-function Ideamodal({ idea }) {
-  const { id, title, description, created_at, user_profile } = idea;
+function Ideamodal({idea}) {
+  const { id, title, description, user_profile } = idea;
   const {firstname,lastname} = user_profile;
   const [upvoteToggle, setUpvoteToggle] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -125,12 +113,11 @@ function Ideamodal({ idea }) {
 
   return (
     <div>
-      <div>
         <div className="idea-showcase">
           <section>
             <div onClick={onOpen} className="cursor">
-              <h1 className="bold-font">{title}</h1>
-              <p className="idea-intro">{description}</p>
+              <h1 className={`bold-font ${theme_text}`}>{title}</h1>
+              <p className={`idea-intro ${theme_text}`}>{description}</p> 
             </div>
             <Link to={`/Profile/${idea.user_id}`}>
             <Button colorScheme="teal" variant="link">
@@ -138,130 +125,23 @@ function Ideamodal({ idea }) {
             </Button>
             </Link>
           </section>
-          <section>
-        </section>
-        <div className="flex-col">
-          <Button
-            className="buttonZindex"
-            colorScheme="teal"
-            variant={isUpvotedByMe() ? "solid" : "outline"}
-            onClick={() => {
-              setUpvoteToggle(prev => !prev);
-              updateUpvote();
-            }}
-          >
-            <ArrowUpIcon />
-            <h1>{ideaUpvotes.length}</h1>
-          </Button>
-          <Button colorScheme="teal" variant="solid" onClick={onOpen}>
-            View
-          </Button>
         </div>
-      </div>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent
-          style={{
-            margin: "2rem",
-          }}
-        >
-          <ModalHeader>
-            <section className="spacebtw marginLeft">
-              <div>
-                <h1>{idea.title}</h1>
-                <Link to={`/Profile/${idea.user_id}`}>
-                <Button colorScheme="teal" variant="link">
-                  {firstname + " " + lastname}
-                </Button>
-                </Link>
-              </div>
-              <div className="gap-display">
-                <Button colorScheme="teal" variant="solid">
-                  Connect
-                </Button>
-                <Button
-                  colorScheme="teal"
-                  variant={upvoteToggle ? "solid" : "outline"}
-                  onClick={() => {
-                    setUpvoteToggle(prev => !prev);
-                    updateUpvote();
-                  }}
-                >
-                  <ArrowUpIcon />
-                  <h1>{ideaUpvotes.length}</h1>
-                </Button>
-              </div>
-            </section>
-            <section className="gap-display">
-              <Tag size="md" variant="subtle" colorScheme="teal">
-                category
-              </Tag>
-            </section>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody className="flex-col">
-            <h1>{idea.description} </h1>
-            <div className="date-section gap-display">
-              <span>Posted at</span>
-              <span>
-                {created_at
-                  .split("")
-                  .slice(0, 10)
-                  .join("")
-                  .split("-")
-                  .reverse()
-                  .join("-")}
-              </span>
-            </div>
-          </ModalBody>
-          <ModalFooter className="flex-col">
-            <div className="gap-display idea-modal-footer">
-              <Input
-                placeholder="comment section"
-                size="sm"
-                className=""
-                name="comment"
-                value={comment}
-                onChange={e => setComment(e.target.value)}
-              />
-              <Button
-                colorScheme="teal"
-                variant="solid"
-                size="sm"
-                onClick={submitComment}
-              >
-                comment
-              </Button>
-            </div>
-            <div className="comment-list">
-              {ideaComments.map(({ id, comment, user_profile }) => (
-                <div className="single-comment" key={id}>
-                  <div className="profile-details">
-                    <Icon as={FaUserCircle} w={5} h={5}></Icon>
-                    <h3 className="name">
-                      {user_profile.firstname + " " + user_profile.lastname}
-                    </h3>
-                    <small className="date">
-                      {"2022-05-07"
-                        .split("")
-                        .slice(0, 10)
-                        .join("")
-                        .split("-")
-                        .reverse()
-                        .join("-")}
-                    </small>
-                  </div>
-                  <h1 key={{ id }} className="comment">
-                    {comment}
-                  </h1>
-                </div>
-              ))}
-            </div>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </div>
+          <div className="flex-col">
+            <Button
+              className="buttonZindex"
+              colorScheme="teal"
+              variant={isUpvotedByMe() ? "solid" : "outline"}
+              onClick={() => {
+                setUpvoteToggle(prev => !prev);
+                updateUpvote()}}>
+              <ArrowUpIcon />
+              <h1>{ideaUpvotes?.length}</h1>
+            </Button>
+            <Button colorScheme="teal" variant="solid" onClick={onOpen}>
+              View
+            </Button>
+          </div>
+        <ModalDialog explore={true} idea={idea} isOpen={isOpen} onClose={onClose} upvoteToggle={upvoteToggle} setUpvoteToggle={setUpvoteToggle}/>
     </div>
   );
 }

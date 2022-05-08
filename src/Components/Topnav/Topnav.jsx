@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@chakra-ui/react';
 import { FaUserAlt } from 'react-icons/fa';
 import { FiUser } from 'react-icons/fi';
-import { MdLogout } from 'react-icons/md';
+import { MdLogout, MdExplore } from 'react-icons/md';
 
 const Topnav = () => {
     const { themeState, themeDispatch } = useTheme();
@@ -18,9 +18,10 @@ const Topnav = () => {
     const [showDropdown, setShowDropdown] = useState();
   return (
     <div className={`topnav ${theme==="light" ? "topnav-light" : "topnav-dark"}`}>
-      <Link to={"/"}>
-        <h3 className="header">Ide<span className="header-span">a</span>hunt</h3>
-      </Link>
+        <h3 className="header" 
+            onClick={()=>{
+              setShowDropdown(false)
+              navigate('/')}}>Ide<span className="header-span">a</span>hunt</h3>
         <div className="topnav-actions">
             {theme==="light" ? 
                 <MoonIcon w={10} h={10} color="teal" className="icon" onClick={()=>themeDispatch({type: "dark"})}/> 
@@ -35,11 +36,21 @@ const Topnav = () => {
                     <Button leftIcon={<FiUser />}
                             colorScheme="black" 
                             variant='link' 
-                            onClick={()=>navigate(`/Profile/${user ? user?.id:"" }`)}>Profile</Button>       
+                            onClick={()=>{
+                              setShowDropdown(false)
+                              navigate(`/Profile/${user ? user?.id : ""}`)}}>Profile</Button>
+                    <Button leftIcon={<MdExplore />}
+                            colorScheme="black" 
+                            variant='link' 
+                            onClick={()=>{
+                              setShowDropdown(false)
+                              navigate("/explore")}}>Explore</Button>  
                     <Button leftIcon={<MdLogout />}
                             colorScheme="black" 
                             variant='link' 
-                            onClick={()=> logoutHandler(navigate)}>Logout</Button>
+                            onClick={()=> {
+                              setShowDropdown(false)
+                              logoutHandler(navigate)}}>Logout</Button>
                   </div>}
                 
               </>

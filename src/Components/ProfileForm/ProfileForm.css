@@ -23,3 +23,55 @@
 .options {
     color: black;
 }
+
+.table-desc {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 5rem
+}
+
+.idea-listing {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.idea-div {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  border: 1.5px solid teal;
+  max-width: 40rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.idea-details {
+  margin-top: 0.5rem;
+}
+
+.idea-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.idea-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.idea-upvotes {
+  background-color: teal;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  color: white
+}
