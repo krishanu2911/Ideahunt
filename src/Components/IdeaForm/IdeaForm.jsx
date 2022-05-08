@@ -32,7 +32,9 @@ const IdeaForm = () => {
     try {
       let { data, error } = await supabase
         .from("ideas")
-        .select(`*, user_profile!ideas_user_id_fkey(id,firstname,lastname)`)
+        .select(
+          `*, user_profile!ideas_user_id_fkey(id,firstname,lastname),category(*)`
+        )
         .match({ user_id: userId })
         .order("created_at", { ascending: false });
       setUserIdeas(data);
@@ -43,10 +45,6 @@ const IdeaForm = () => {
       console.log("Some error occured", e);
     }
   };
-
-  useEffect(() => {
-    getAllUserIdeas();
-  }, []);
 
   const [form, setForm] = useState({
     title: "",
@@ -74,6 +72,9 @@ const IdeaForm = () => {
   useEffect(() => {
     getCategory();
   }, []);
+  useEffect(() => {
+    getAllUserIdeas();
+  }, [form]);
 
   const findCategory = category.find(
     (item) => item.category_name === form.category
@@ -109,14 +110,14 @@ const IdeaForm = () => {
   return (
     <div className="profile-page-container">
       {user?.id === userId ? (
-                <Button
-                variant="outline"
-                colorScheme="teal"
-                onClick={() => setShowForm(!showForm)}
-              >
-                {showForm ? "Hide form" : "Add idea"}
-              </Button>
-              ) : null}
+        <Button
+          variant="outline"
+          colorScheme="teal"
+          onClick={() => setShowForm(!showForm)}
+        >
+          {showForm ? "Hide form" : "Add idea"}
+        </Button>
+      ) : null}
       {showForm && (
         <Container maxW="4xl" centerContent>
           <div className="profile-div">
@@ -207,7 +208,7 @@ const IdeaForm = () => {
           )}
         </Heading>
         {userIdeas?.map((idea) => (
-          <Ideamodal idea={idea} key={idea.id} />
+          <Ideamodal idea={idea} key={idea.id} isProfilePage={true} />
         ))}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDisclosure, Button } from "@chakra-ui/react";
+import { useDisclosure, Button, Tag } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
@@ -9,9 +9,10 @@ import { useAuth } from "Context";
 
 import { ModalDialog } from "Components";
 import { Link } from "react-router-dom";
-function Ideamodal({ idea }) {
-  const { id, title, description, user_profile } = idea;
+function Ideamodal({ idea, isProfilePage }) {
+  const { id, title, description, user_profile, category } = idea;
   const { firstname, lastname } = user_profile;
+
   const [upvoteToggle, setUpvoteToggle] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [comment, setComment] = useState("");
@@ -21,6 +22,7 @@ function Ideamodal({ idea }) {
   const [isUpvoted, setIsUpvoted] = useState(false);
   const { themeState } = useTheme();
   const { theme } = themeState;
+  const { category_name } = category;
   const theme_text = theme === "light" ? "text_light" : "text_dark";
 
   const { user } = useAuth();
@@ -111,7 +113,7 @@ function Ideamodal({ idea }) {
     setComment("");
   };
 
- const isUpvotedByMe = () => ideaUpvotes?.find(vote => vote.idea_id === id);
+  const isUpvotedByMe = () => ideaUpvotes?.find((vote) => vote.idea_id === id);
 
   return (
     <div>
@@ -122,12 +124,17 @@ function Ideamodal({ idea }) {
             <p className={`idea-intro ${theme_text}`}>{description}</p>
           </div>
 
-          <Link to={`/Profile/${idea.user_profile.id}`}>
+          {isProfilePage ? (
+            <Tag size="lg" variant="subtle" colorScheme="teal">
+              {category_name}
+            </Tag>
+          ) : (
+            <Link to={`/Profile/${idea.user_profile.id}`}>
               <Button colorScheme="teal" variant="link">
                 {firstname + " " + lastname}
               </Button>
-          </Link>
-
+            </Link>
+          )}
         </section>
         <div className="flex-col">
           <Button
