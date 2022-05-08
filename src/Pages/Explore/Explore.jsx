@@ -9,11 +9,12 @@ import { BiUpArrowAlt, BiDownArrowAlt } from 'react-icons/bi';
 import { useAuth, useTheme } from "Context";
 import { Icon } from "@chakra-ui/icon";
 import { Link } from "react-router-dom";
+import { useAuth } from "Context";
 
 const category = [1, 2, 3, 4,5 ,6]
 export default function Explore() {
   const [ideas, setIdeas] = useState([]);
-  const [sort, setSort] = useState(false);
+   const [sort, setSort] = useState(false);
   const { themeState } = useTheme();
   const { theme } = themeState;
   const { user } = useAuth();
