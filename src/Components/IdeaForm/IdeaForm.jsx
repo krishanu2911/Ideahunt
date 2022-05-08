@@ -21,7 +21,11 @@ description: "description",
 category: "Web development",
 upvotes: [{}, {}], 
 created_at: "2022-05-07", 
-comments: ["Good job", "would like to contribute"] }]
+comments: ["Good job", "would like to contribute"],
+user_profile: {
+  firstname: "Sadath",
+  lastname: "Shariff"
+} }]
 const IdeaForm = () => {
   
   const { themeState } = useTheme();
@@ -194,7 +198,7 @@ const IdeaForm = () => {
               <Text fontSize='sm' color={theme === "light" ? "#000" : "#fff"} className="idea-desc idea-details">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.</Text>
             </div>
           </div>
-          <ModalDialog idea={idea} isOpen={isOpen} onClose={onClose}/>
+          <ModalDialog idea={idea} isOpen={isOpen} onClose={onClose} />
         </div>)}
     </div>
     </div>
@@ -202,3 +206,12 @@ const IdeaForm = () => {
 };
 
 export { IdeaForm };
+
+// ideaComments, 
+// submitComment, 
+// comment, 
+// setComment, 
+// upvoteToggle=null, 
+// setUpvoteToggle=null, 
+// ideaUpvotes,
+// updateUpvote

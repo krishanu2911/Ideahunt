@@ -5,7 +5,6 @@ import {
 } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
-import { Link } from "react-router-dom";
 import { useTheme } from "Context";
 import { supabase } from "supabaseClient";
 import { useAuth } from "Context";
@@ -16,15 +15,17 @@ function Ideamodal({idea}) {
   const {firstname,lastname} = user_profile;
   const [upvoteToggle, setUpvoteToggle] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { themeState } = useTheme();
-  const { theme } = themeState;
-  const theme_text = theme === "light" ? "text_light" : "text_dark";
   const [comment, setComment] = useState("");
-  const { user } = useAuth();
   const [ideaComments, setIdeaComments] = useState([]);
   const [ideaUpvotes, setIdeaUpvotes] = useState([]);
   const [commentAdded, setCommentAdded] = useState(false);
   const [isUpvoted, setIsUpvoted] = useState(false);
+  const { themeState } = useTheme();
+  const { theme } = themeState;
+  const theme_text = theme === "light" ? "text_light" : "text_dark";
+  
+  const { user } = useAuth();
+ 
   const getCommentsByIdeaId = async () => {
     try {
       let { data, error } = await supabase
@@ -114,34 +115,45 @@ function Ideamodal({idea}) {
   return (
     <div>
         <div className="idea-showcase">
-          <section>
-            <div onClick={onOpen} className="cursor">
-              <h1 className={`bold-font ${theme_text}`}>{title}</h1>
-              <p className={`idea-intro ${theme_text}`}>{description}</p> 
-            </div>
-            <Link to={`/Profile/${idea.user_id}`}>
-            <Button colorScheme="teal" variant="link">
-            {firstname + " " + lastname}
-            </Button>
-            </Link>
-          </section>
-        </div>
-          <div className="flex-col">
-            <Button
-              className="buttonZindex"
-              colorScheme="teal"
-              variant={isUpvotedByMe() ? "solid" : "outline"}
-              onClick={() => {
-                setUpvoteToggle(prev => !prev);
-                updateUpvote()}}>
-              <ArrowUpIcon />
-              <h1>{ideaUpvotes?.length}</h1>
-            </Button>
-            <Button colorScheme="teal" variant="solid" onClick={onOpen}>
-              View
-            </Button>
+        <section>
+          <div onClick={onOpen} className="cursor">
+            <h1 className={`bold-font ${theme_text}`}>{title}</h1>
+            <p className={`idea-intro ${theme_text}`}>{description}</p>
           </div>
-        <ModalDialog explore={true} idea={idea} isOpen={isOpen} onClose={onClose} upvoteToggle={upvoteToggle} setUpvoteToggle={setUpvoteToggle}/>
+          <Button colorScheme="teal" variant="link">
+            {firstname + " " + lastname}
+          </Button>
+        </section>
+        <div className="flex-col">
+          <Button
+            className="buttonZindex"
+            colorScheme="teal"
+            variant={isUpvotedByMe() ? "solid" : "outline"}
+            onClick={() => {
+              setUpvoteToggle(prev => !prev);
+              updateUpvote();
+            }}
+          >
+            <ArrowUpIcon />
+            <h1>{ideaUpvotes.length}</h1>
+          </Button>
+          <Button colorScheme="teal" variant="solid" onClick={onOpen}>
+            View
+          </Button>
+        </div>
+      </div>
+        <ModalDialog explore={true} 
+                    idea={idea} 
+                    isOpen={isOpen} 
+                    submitComment={submitComment} 
+                    comment={comment} 
+                    setComment={setComment} 
+                    ideaComments={ideaComments} 
+                    onClose={onClose} 
+                    upvoteToggle={upvoteToggle} 
+                    setUpvoteToggle={setUpvoteToggle}
+                    ideaUpvotes={ideaUpvotes}
+                    updateUpvote={updateUpvote}/>
     </div>
   );
 }
