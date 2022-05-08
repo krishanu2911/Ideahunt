@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
 import { useAuth, useTheme } from 'Context';
@@ -12,10 +12,11 @@ import { MdLogout } from 'react-icons/md';
 const Topnav = () => {
     const { themeState, themeDispatch } = useTheme();
     const { theme } = themeState;
-    const {logoutHandler, userLogin} = useAuth();
+    const login = false;
+    const navigate = useNavigate()
+    const {logoutHandler, userLogin , user} = useAuth();
     const navigate = useNavigate();
     const [showDropdown, setShowDropdown] = useState();
-
   return (
     <div className={`topnav ${theme==="light" ? "topnav-light" : "topnav-dark"}`}>
         <h3 className="header">Ide<span className="header-span">a</span>hunt</h3>
@@ -29,10 +30,11 @@ const Topnav = () => {
                 <Icon as={FaUserAlt} w={10} h={10} className="icon" color="teal" onClick={()=>setShowDropdown(!showDropdown)}></Icon>
                 {showDropdown &&
                   <div className="topnav-links">
+                  
                     <Button leftIcon={<FiUser />}
                             colorScheme="black" 
                             variant='link' 
-                            onClick={()=>navigate("/profile")}>Profile</Button>       
+                            onClick={()=>navigate(`/Profile/${user ? user?.id:"" }`)}>Profile</Button>       
                     <Button leftIcon={<MdLogout />}
                             colorScheme="black" 
                             variant='link' 

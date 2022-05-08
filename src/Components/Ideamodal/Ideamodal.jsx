@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { ArrowUpIcon } from "@chakra-ui/icons";
 import "../Ideamodal/Ideamodal.css";
+import { Link } from "react-router-dom";
 import { useTheme } from "Context";
 import { Icon } from "@chakra-ui/react";
 import { FaUserCircle } from "react-icons/fa";
@@ -124,11 +125,32 @@ function Ideamodal({ idea }) {
 
   return (
     <div>
-      <div className="idea-showcase">
-        <section>
-          <div onClick={onOpen} className="cursor">
-            <h1 className={`bold-font ${theme_text}`}>{title}</h1>
-            <p className={`idea-intro ${theme_text}`}>{description}</p>
+      <div>
+        <div className="idea-showcase">
+          <section>
+            <div onClick={onOpen} className="cursor">
+              <h1 className="bold-font">{title}</h1>
+              <p className="idea-intro">{description}</p>
+            </div>
+            <Link to={`/Profile/${idea.user_id}`}>
+            <Button colorScheme="teal" variant="link">
+              Author Name
+            </Button>
+            </Link>
+          </section>
+          <div className="flex-col">
+            <Button
+              className="buttonZindex"
+              colorScheme="teal"
+              variant={upvoteToggle ? "solid" : "outline"}
+              onClick={() => setUpvoteToggle(prev => !prev)}
+            >
+              <ArrowUpIcon />
+              <h1>99</h1>
+            </Button>
+            <Button colorScheme="teal" variant="solid" onClick={onOpen}>
+              View
+            </Button>
           </div>
           <Button colorScheme="teal" variant="link">
             {firstname + " " + lastname}
@@ -164,6 +186,12 @@ function Ideamodal({ idea }) {
             <section className="spacebtw marginLeft">
               <div>
                 <h1>{idea.title}</h1>
+                <Link to={`/Profile/${idea.user_id}`}>
+                 <Button colorScheme="teal" variant="link">
+                  Author Name
+                </Button> 
+                </Link>
+
                 <Button colorScheme="teal" variant="link">
                   {firstname + " " + lastname}
                 </Button>

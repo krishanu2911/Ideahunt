@@ -17,8 +17,9 @@ export default function Explore() {
         .select(`*, user_profile!ideas_user_id_fkey(id,firstname,lastname)`)
         .order("created_at", { ascending: false });
       setIdeas(data);
-      if (error) {
-        console.log(error);
+      if(error)
+      {
+        console.log(error)
       }
     } catch (e) {
       console.log("Some error occured", e);

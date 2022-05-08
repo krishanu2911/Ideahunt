@@ -10,6 +10,7 @@ function RouterPath() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/explore" element={<Explore />} />
       <Route path="/Profile" element={<Profile />} />
+      <Route path="/Profile/:userId" element={<Profile />} />
     </Routes>
   );
 }
