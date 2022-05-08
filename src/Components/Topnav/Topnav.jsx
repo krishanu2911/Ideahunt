@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { Button } from '@chakra-ui/react';
 import { useAuth, useTheme } from 'Context';
@@ -10,7 +10,14 @@ const Topnav = () => {
     const { themeState, themeDispatch } = useTheme();
     const { theme } = themeState;
     const login = false;
-    const {signOut} = useAuth();
+    const [ loggedUser, setLoggedUser ] = useState({})
+    const {signOut,user} = useAuth();
+    console.log(user)
+    useEffect(() => {
+      if(user){
+        setLoggedUser(user);
+      }
+    },[user])
     const navigate = useNavigate()
   return (
     <div className={`topnav ${theme==="light" ? "topnav-light" : "topnav-dark"}`}>
@@ -25,6 +32,9 @@ const Topnav = () => {
               : 
               <Button colorScheme="teal" variant='solid' onClick={()=> {signOut();
               navigate("/login")} } >Logout</Button>}
+              <Link to={`/Profile/${loggedUser ? loggedUser.id:"" }`}>
+              <Button colorScheme="teal" variant='link' >profile</Button>
+              </Link>
         </div>
     </div>
   )

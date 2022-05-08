@@ -15,7 +15,7 @@ export default function Explore() {
       // let { data, error } = await supabase.from("ideas").select("*");
       let { data, error } = await supabase.from("ideas").select(`*, comments(*), upvotes(*)`);
       setIdeas(data);
-      console.log(data);
+      // console.log(data);
       if(error)
       {
         console.log(error)
