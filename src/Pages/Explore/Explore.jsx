@@ -6,7 +6,7 @@ import { Ideamodal } from "../../Components/index";
 import { supabase } from "supabaseClient";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useAuth } from "Context";
+// import { useAuth } from "Context";
 export default function Explore() {
   const [ideas, setIdeas] = useState([]);
 
@@ -31,7 +31,7 @@ export default function Explore() {
   return (
     <div className="explore-section">
       <div className="explore-header">
-        <div className="">
+        <div>
           <InputGroup size="lg">
             <InputLeftElement
               pointerEvents="none"
@@ -44,9 +44,11 @@ export default function Explore() {
           New Idea
         </Button>
       </div>
-      {ideas.map((idea) => {
-        return <Ideamodal idea={idea} />;
-      })}
+      <div className="idea_models">
+        {ideas.map((idea) => {
+          return <Ideamodal idea={idea} />;
+        })}
+      </div>
     </div>
   );
 }
