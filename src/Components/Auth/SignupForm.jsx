@@ -70,7 +70,7 @@ const SignupForm = () => {
     } else 
     {
       setForm(defaultForm);
-      navigate("/login");
+      navigate("/");
     }
   };
 

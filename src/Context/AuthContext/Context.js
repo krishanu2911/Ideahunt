@@ -26,9 +26,11 @@ const AuthProvider = ({ children }) => {
   const signUp = (userData, metaData) =>
     supabase.auth.signUp(userData, { data: metaData });
 
-  // supabase.auth.signUp(userData, { data: metaData });
-
-  const signIn = (data) => supabase.auth.signIn(data);
+  const signIn = (data) => {
+    if(Date.parse(user?.last_sign_in_at) < Date.now())
+    supabase.auth.signOut()
+   return  supabase.auth.signIn(data)
+  };
 
   const signOut = () => supabase.auth.signOut();
 
