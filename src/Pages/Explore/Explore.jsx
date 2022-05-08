@@ -9,7 +9,6 @@ import { BiUpArrowAlt, BiDownArrowAlt } from 'react-icons/bi';
 import { useAuth, useTheme } from "Context";
 import { Icon } from "@chakra-ui/icon";
 import { Link } from "react-router-dom";
-import { useAuth } from "Context";
 
 const category = [1, 2, 3, 4,5 ,6]
 export default function Explore() {
@@ -51,7 +50,7 @@ export default function Explore() {
             <Input type="text" placeholder="Search idea" />
           </InputGroup>
           <Link to={`/Profile/${user ? user?.id : ""}`}>
-            <Button colorScheme="teal" variant="solid">Add your idea</Button>
+            <Button colorScheme="teal" variant="solid">Add new idea</Button>
             {/* <Icon as={AiOutlinePlus} w={9} height={9} color="white" className="explore_icon"></Icon> */}
           </Link>
         </div>  
