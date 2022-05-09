@@ -68,7 +68,7 @@ const ModalDialog = (props) => {
                 </Link>
               </div>
               <div className="gap-display button-actions">
-                { !userId && (
+                {!userId && (
                   <Link to={`/Profile/${idea.user_id}`}>
                     <Button
                       onClick={() =>
@@ -137,6 +137,7 @@ const ModalDialog = (props) => {
                 className=""
                 name="comment"
                 value={comment}
+                color={theme === "light" ? "#000" : "#fff"}
                 onChange={e => setComment(e.target.value)}
               />
               <Button

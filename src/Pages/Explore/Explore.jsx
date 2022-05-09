@@ -88,7 +88,7 @@ export default function Explore() {
             />
           </InputGroup>
           <Link to={`${user ? `/Profile/${user ? user?.id : ""}` : "/login"}`}>
-            <Button colorScheme="teal" variant="solid" onClick={() => Toast("hello","success")}>
+            <Button colorScheme="teal" variant="solid">
               Add new idea
             </Button>
           </Link>
