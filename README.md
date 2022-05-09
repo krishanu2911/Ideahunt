@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# IDEAHUNT
+Ideahunt helps you connect with various people with different ideas. You can read about their ideas, connect and also collaborate with them.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Team name
+Hoisters
 
-## Available Scripts
+## Team members
+- [Sadathulla Shariff](https://github.com/sadathshariff)
+- [Aishwarya Biradar](https://github.com/aishwarya-bm)
+- [Krishanu Dutta](https://github.com/krishanu2911)
+- [Nisha Sen](https://github.com/nishasen)
 
-In the project directory, you can run:
+## Features 
+- Authentication for signup and login
+- Explore ideas
+- Look into author’s profile to connect
+- Search for ideas
+- Set up user profile
+- Add new ideas
+- User’s ideas
+- Collaborate using comments and social handles
+- Upvote ideas
+- Dark mode/Light mode
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
+- React
+- Supabase
+- JavaScript
+- HTML
+- CSS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Live link
+[Ideahunt](https://ideahunt-hoisters.vercel.app/)
 
-### `npm test`
+## Presentation link
+[Ideahunt](https://docs.google.com/presentation/d/17wjSXquQA911PwjN-aO7PxxD5UbxZr6BOHBvQDm2QWA/edit#slide=id.g128d7859cfc_0_460)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Github link
+[Ideahunt](https://github.com/nishasen/Ideahunt)
 
-### `npm run build`
+## Screenshots
+- Landing page
+![WhatsApp Image 2022-05-09 at 5 08 46 AM](https://user-images.githubusercontent.com/43262505/167321659-1c31981d-6d20-4b89-8436-74364c336034.jpeg)
+- Authentication page - Login page
+![WhatsApp Image 2022-05-09 at 5 09 21 AM](https://user-images.githubusercontent.com/43262505/167321663-0d14593f-455a-4ed4-b699-fb0f9d1d8959.jpeg)
+- Dashboard
+![WhatsApp Image 2022-05-09 at 5 13 55 AM](https://user-images.githubusercontent.com/43262505/167321664-e5a30de8-43e5-4799-9d39-dc70a6401f06.jpeg)
+- Modal
+![WhatsApp Image 2022-05-09 at 5 16 15 AM](https://user-images.githubusercontent.com/43262505/167321665-46fbce27-fd44-4edf-868b-586fb7465981.jpeg)
+- Explore page
+![WhatsApp Image 2022-05-09 at 5 31 02 AM](https://user-images.githubusercontent.com/43262505/167321666-034d6080-0d5d-41b5-be88-baf0d8b36acd.jpeg)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
