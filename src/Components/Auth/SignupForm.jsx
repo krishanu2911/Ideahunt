@@ -28,8 +28,8 @@ const SignupForm = () => {
     password: {
       isError: false,
       errorMessage:
-        "Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number",
-    }
+        "Minimum eight characters, at least one letter, one number and one special character",
+    },
   });
   const { themeState } = useTheme();
   const { theme } = themeState;
@@ -52,8 +52,8 @@ const SignupForm = () => {
 
   const SubmitHandler = async event => {
     event.preventDefault();
-
-    const { user, error } = await signUp(
+try
+    {const { user, error } = await signUp(
       {
         email: form.email,
         password: form.password,
@@ -63,7 +63,7 @@ const SignupForm = () => {
     if (error) {
       if(error.status === 400)
       {
-        //toast - user already registered
+        Toast("This email already exists.", "error");
         return;
       }
       setError(error.message);
@@ -71,6 +71,10 @@ const SignupForm = () => {
     {
       setForm(defaultForm);
       navigate("/");
+    }}
+    catch(e){
+      console.log(e)
+      Toast("Invalid credentails.", "error");
     }
   };
 

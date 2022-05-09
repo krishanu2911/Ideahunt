@@ -27,7 +27,7 @@ const LoginForm = () => {
     password: {
       isError: false,
       errorMessage:
-        "Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number",
+        "Minimum eight characters, at least one letter, one number and one special character",
     },
   });
   const { themeState } = useTheme();
@@ -53,16 +53,17 @@ const LoginForm = () => {
     event.preventDefault();
     try {
       const { error } = await signIn(form);
-      Toast("Logged In Successfully", "success");
+      
       if (error) {
-        setError(error.message);
-        Toast("Some error occured", "error");
+        Toast("Invalid credentials, please try again.", "error");
       } else {
         navigate(location.state?.from?.pathname || "/");
         setForm({ email: "", password: "" });
+        Toast("Logged In Successfully", "success");
       }
     } catch (e) {
       console.log(e);
+      Toast("Some error occured, please try again.", "error");
     }
   };
 
