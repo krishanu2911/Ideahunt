@@ -137,7 +137,7 @@ const IdeaForm = () => {
               Add your ideas
             </Text>
             <div className="profile-form">
-              <form onSubmit={(e) => submitHandler(e)}>
+              <form onSubmit={e => submitHandler(e)}>
                 <FormControl isRequired>
                   <FormLabel
                     htmlFor="title"
@@ -150,7 +150,8 @@ const IdeaForm = () => {
                     placeholder="Title"
                     name="title"
                     value={form.title}
-                    onChange={(e) => handleChange(e)}
+                    color={theme === "light" ? "black" : "white"}
+                    onChange={e => handleChange(e)}
                   />
                   <FormLabel
                     htmlFor="bio"
@@ -163,7 +164,8 @@ const IdeaForm = () => {
                     placeholder="Please Describe your idea"
                     name="description"
                     value={form.description}
-                    onChange={(e) => handleChange(e)}
+                    color={theme === "light" ? "black" : "white"}
+                    onChange={e => handleChange(e)}
                   />
                   <FormLabel
                     htmlFor="category"
@@ -173,13 +175,13 @@ const IdeaForm = () => {
                   </FormLabel>
                   <Select
                     variant="outline"
-                    color={theme === "light" ? "#000" : "#fff"}
                     placeholder="Select option"
                     name="category"
                     value={form.category}
-                    onChange={(e) => handleChange(e)}
+                    color={theme === "light" ? "black" : "white"}
+                    onChange={e => handleChange(e)}
                   >
-                    {category.map((c) => (
+                    {category.map(c => (
                       <option
                         key={c.id}
                         value={c.category_name}
@@ -212,7 +214,7 @@ const IdeaForm = () => {
             <>{userIdeas[0]?.user_profile?.firstname + "'s ideas"}</>
           )}
         </Heading>
-        {userIdeas?.map((idea) => (
+        {userIdeas?.map(idea => (
           <Ideamodal idea={idea} key={idea.id} isProfilePage={true} />
         ))}
       </div>

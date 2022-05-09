@@ -71,6 +71,7 @@ try
     {
       setForm(defaultForm);
       navigate("/");
+      Toast("Signed up successfully","success")
     }}
     catch(e){
       console.log(e)
